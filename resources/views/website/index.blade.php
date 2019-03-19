@@ -51,6 +51,9 @@
                 <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
                     <div class="w3_agile_featured_movies">
                         <!-- start !-->
+                        @php
+                                $counter=0;
+                                 @endphp   
          @foreach ($movie_featured as $item)
                             
          @php
@@ -83,6 +86,9 @@
 
                 <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
                     <!-- start!-->
+                              @php
+                                $counter=0;
+                                 @endphp   
              @foreach ($movie_toview as $item)
              @php
              $counter++;
@@ -109,7 +115,10 @@
  
                                 <!-- END !-->
                             <div role="tabpanel" class="tab-pane fade" id="rating" aria-labelledby="rating-tab">
-                                <!-- Start !-->                  
+                                <!-- Start !-->             
+                                @php
+                                $counter=0;
+                                 @endphp     
                                 @foreach ($movie_imbd as $item)
                                 @php
                                 $counter++;
@@ -136,6 +145,9 @@
                         
                             <div role="tabpanel" class="tab-pane fade" id="imdb" aria-labelledby="imdb-tab">
                                     <!-- Start !-->
+                                    @php
+                                $counter=0;
+                                 @endphp   
                                     @foreach ($movie_recently as $item)
                                     @php
                                     $counter++;
