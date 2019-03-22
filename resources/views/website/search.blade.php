@@ -5,7 +5,7 @@
 
             <!-- /movie-browse-agile -->
             
-                  <div class="movie-browse-agile">
+                  <div class="movie-browse-agile"> 
                      <!--/browse-agile-w3ls -->
                     <div class="browse-agile-w3ls general-w3ls">
                             <div class="tittle-head">
@@ -22,10 +22,12 @@
                             </div>
                                  <div class="container">
                         <div class="browse-inner">
+                            @if ($movie->isEmpty() && $serie->isEmpty())
+                                <h1 class="text-center">No result found</h1>
+                            @endif
                             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~start~~~~~~~~~~~~~~!-->
                             @foreach ($movie as $item)
-                                
-                           
+                                  
                             @php
                             $counter++;
                              @endphp
