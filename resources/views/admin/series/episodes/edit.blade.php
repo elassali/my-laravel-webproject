@@ -44,33 +44,11 @@
                </div>
 
         <div class="form-group">
-            {!!Form::label('wserverone', 'Server One :', ['class' => 'input-group-text'])!!}
+            {!!Form::label('wserverone', 'IMDB ID :', ['class' => 'input-group-text'])!!}
             {!!Form::text('wserverone', $watch->server1, ['class' => 'form-control'])!!}
            </div>
 
-           <div class="form-group">
-            {!!Form::label('wservertwo', 'Server Two :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('wservertwo', $watch->server2, ['class' => 'form-control'])!!}
-           </div>
-
-           <div class="form-group">
-            {!!Form::label('wserverthree', 'Server Three :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('wserverthree', $watch->server3, ['class' => 'form-control'])!!}
-           </div>
-
-           <div class="form-group">
-            {!!Form::label('wserverfour', 'Server Four :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('wserverfour', $watch->server4, ['class' => 'form-control'])!!}
-           </div>
-
-           <div class="form-group">
-            {!!Form::label('wserverfive', 'Server Five :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('wserverfive', $watch->server5, ['class' => 'form-control'])!!}
-           </div>
-           <div class="form-group">
-            {!!Form::label('wserversix', 'Server Six :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('wserversix', $watch->server6, ['class' => 'form-control'])!!}
-           </div>
+          
            <br />
            <div align="center">
            <button type="button" name="btn_personal_details" id="btn_login_details" class="btn btn-info btn-lg">Next</button>
@@ -98,19 +76,7 @@
             {!!Form::text('dserverthree', $down->server3, ['class' => 'form-control'])!!}
            </div>
 
-           <div class="form-group">
-            {!!Form::label('dserverfour', 'Server Four :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('dserverfour', $down->server4, ['class' => 'form-control'])!!}
-           </div>
-
-           <div class="form-group">
-            {!!Form::label('dserverfive', 'Server Five :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('dserverfive', $down->server5, ['class' => 'form-control'])!!}
-           </div>
-           <div class="form-group">
-            {!!Form::label('dserversix', 'Server Six :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('dserversix', $down->server6, ['class' => 'form-control'])!!}
-           </div>
+           
            <br />
            <div align="center">
            <button type="button" name="previous_btn_contact_details" id="previous_btn_contact_details" class="btn btn-default btn-lg">Previous</button>

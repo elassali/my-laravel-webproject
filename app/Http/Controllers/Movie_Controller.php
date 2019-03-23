@@ -114,11 +114,6 @@ class Movie_Controller extends Controller
         $watchm=new Watchmovie;
         $watchm['movie_id']=$movie_id;
         $watchm['server1']=$input['wserverone'];
-        $watchm['server2']=$input['wservertwo'];
-        $watchm['server3']=$input['wserverthree'];
-        $watchm['server4']=$input['wserverfour'];
-        $watchm['server5']=$input['wserverfive'];
-        $watchm['server6']=$input['wserversix'];
         $watchm->save();
 
        $downl=new Downloadmovie;
@@ -126,9 +121,6 @@ class Movie_Controller extends Controller
        $downl['server1']=$input['dserverone'];
        $downl['server2']=$input['dservertwo'];
        $downl['server3']=$input['dserverthree'];
-       $downl['server4']=$input['dserverfour'];
-       $downl['server5']=$input['dserverfive'];
-       $downl['server6']=$input['dserversix'];
        $downl->save();
 
        //sesion added succefly

@@ -21,11 +21,6 @@ class CreateWatchepisodesTable extends Migration
             $table->integer('episode_number');
             $table->string('slug');
             $table->string('server1',2048)->nullable();   
-            $table->string('server2',2048)->nullable();   
-            $table->string('server3',2048)->nullable();   
-            $table->string('server4',2048)->nullable();   
-            $table->string('server5',2048)->nullable();   
-            $table->string('server6',2048)->nullable();
             $table->timestamps();
         });
     }

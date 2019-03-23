@@ -77,18 +77,13 @@
 						<div id="myTabContent" class="tab-content">
 							<div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
 								<div class="w3_agile_featured_movies">
-										<div class="col-sm-2 forlistserver">                        
-												<ul class="list-group" id="forlistserver">
-                                                        <li class="list-group-item" >  <a  data-server="{{$movie->watch->server1}}" class="list-group-item list-group-item-action list-group-item-light active">server one</a></li>
-														<li class="list-group-item">  <a  data-server="{{$movie->watch->server2}}"  class="list-group-item list-group-item-action list-group-item-light">server two</a></li>
-														<li class="list-group-item">  <a  data-server="{{$movie->watch->server3}}"  class="list-group-item list-group-item-action list-group-item-light">server three</a></li>
-														<li class="list-group-item">  <a   data-server="{{$movie->watch->server4}}"  class="list-group-item list-group-item-action list-group-item-light">server four</a></li>
-														<li class="list-group-item">  <a data-server="{{$movie->watch->server5}}" class="list-group-item list-group-item-action list-group-item-light">server five</a></li>
-														<li class="list-group-item">  <a   data-server="{{$movie->watch->server6}}"  class="list-group-item list-group-item-action list-group-item-light">server six</a></li>
-													  </ul>
-										  </div>
-									<div class="col-sm-10 resp-container" >
-										<iframe class="resp-iframe" src="{{$movie->watch->server1}}" gesture="media"  allow="encrypted-media" allowfullscreen></iframe>
+                                    <?php 
+                                    $videospider_ticket = file_get_contents('https://videospider.in/getticket.php?key=Psb7KFo1qo1ZtVSk&secret_key=6te8vjvjm9t94mlp6wi9mfruvo58cl&video_id='.$movie->watch->server1.'&ip='.$_SERVER["REMOTE_ADDR"]);
+                                    ?>
+									<div class="col-sm-12 resp-container" >
+                                        <iframe class="resp-iframe" 
+                                    src="https://videospider.stream/getvideo?key=Psb7KFo1qo1ZtVSk&video_id={{$movie->watch->server1}}&ticket=<?php echo $videospider_ticket;?>" 
+                                        gesture="media"  allow="encrypted-media" allowfullscreen></iframe>
                                     </div>                       
                             </div>
                                  <!-- Your share button code -->

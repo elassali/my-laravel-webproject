@@ -70,19 +70,13 @@
                                 <div id="myTabContent" class="tab-content">
                                     <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
                                         <div class="w3_agile_featured_movies">
-                                                <div class="col-md-2 forlistserver watchserie">                        
-                                                        <ul class="list-group"  id="forlistserver">
-                                                                <li class="list-group-item" >  <a  data-server="{{$watch->server1}}" class="list-group-item list-group-item-action list-group-item-light active">server One</a></li>
-                                                                <li class="list-group-item">  <a  data-server="{{$watch->server2}}"  class="list-group-item list-group-item-action list-group-item-light">server Two</a></li>
-                                                                <li class="list-group-item">  <a  data-server="{{$watch->server3}}"  class="list-group-item list-group-item-action list-group-item-light">server Three</a></li>
-                                                                <li class="list-group-item">  <a   data-server="{{$watch->server4}}"  class="list-group-item list-group-item-action list-group-item-light">server Four</a></li>
-                                                                <li class="list-group-item">  <a data-server="{{$watch->server5}}" class="list-group-item list-group-item-action list-group-item-light">server Five</a></li>
-                                                                <li class="list-group-item">  <a   data-server="{{$watch->server6}}"  class="list-group-item list-group-item-action list-group-item-light">server Six</a></li>
-                                                              </ul>
-
-                                                  </div>
-                                            <div class="col-md-10 resp-container" >
-                                            <iframe class="resp-iframe videostream" src="{{$watch->server1}}" gesture="media"  allow="encrypted-media" allowfullscreen></iframe>
+                                            <?php 
+                                            $videospider_ticket = file_get_contents('https://videospider.in/getticket.php?key=Psb7KFo1qo1ZtVSk&secret_key=6te8vjvjm9t94mlp6wi9mfruvo58cl&video_id='.$watch->server1.'&s='.$watch->season->season_number.'&ip='.$_SERVER["REMOTE_ADDR"]);
+                                            ?>
+                                            <div class="col-md-12 resp-container" >
+                                            <iframe class="resp-iframe videostream" 
+                                            src="https://videospider.stream/getvideo?key=Psb7KFo1qo1ZtVSk&video_id={{$watch->server1}}&tv=1&s={{$watch->season->season_number}}&e={{$watch->episode_number}}&ticket=<?php echo $videospider_ticket; ?>" 
+                                                gesture="media"  allow="encrypted-media" allowfullscreen></iframe>
                                             </div>
                                             {{-- Facebook share button --}}
                                             <div class="fb-share-button" 

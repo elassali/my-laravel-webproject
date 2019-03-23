@@ -79,32 +79,8 @@
        <div class="panel-heading">Watching Server Details</div>
        <div class="panel-body">
         <div class="form-group">
-            {!!Form::label('wserverone', 'Server One :', ['class' => 'input-group-text'])!!}
+            {!!Form::label('wserverone', 'IMDB ID :', ['class' => 'input-group-text'])!!}
             {!!Form::text('wserverone', $movie->watch->server1, ['class' => 'form-control'])!!}
-           </div>
-
-           <div class="form-group">
-            {!!Form::label('wservertwo', 'Server Two :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('wservertwo', $movie->watch->server2, ['class' => 'form-control'])!!}
-           </div>
-
-           <div class="form-group">
-            {!!Form::label('wserverthree', 'Server Three :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('wserverthree', $movie->watch->server3, ['class' => 'form-control'])!!}
-           </div>
-
-           <div class="form-group">
-            {!!Form::label('wserverfour', 'Server Four :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('wserverfour', $movie->watch->server4, ['class' => 'form-control'])!!}
-           </div>
-
-           <div class="form-group">
-            {!!Form::label('wserverfive', 'Server Five :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('wserverfive', $movie->watch->server5, ['class' => 'form-control'])!!}
-           </div>
-           <div class="form-group">
-            {!!Form::label('wserversix', 'Server Six :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('wserversix', $movie->watch->server6, ['class' => 'form-control'])!!}
            </div>
            <br />
            <div align="center">
@@ -135,19 +111,6 @@
             {!!Form::text('dserverthree', $movie->download->server3, ['class' => 'form-control'])!!}
            </div>
 
-           <div class="form-group">
-            {!!Form::label('dserverfour', 'Server Four :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('dserverfour', $movie->download->server4, ['class' => 'form-control'])!!}
-           </div>
-
-           <div class="form-group">
-            {!!Form::label('dserverfive', 'Server Five :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('dserverfive', $movie->download->server5, ['class' => 'form-control'])!!}
-           </div>
-           <div class="form-group">
-            {!!Form::label('dserversix', 'Server Six :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('dserversix', $movie->download->server6, ['class' => 'form-control'])!!}
-           </div>
            <br />
            <div align="center">
            <button type="button" name="previous_btn_contact_details" id="previous_btn_contact_details" class="btn btn-default btn-lg">Previous</button>

@@ -28,12 +28,8 @@ class CreateEpisode extends FormRequest
             'season_id'=>'required',
             'episode_number'=>'required',
             'wserverone'=>'required',
-            'wservertwo'=>'required',
-            'wserverthree'=>'required',
-            'wserverfour'=>'required',
-            'wserverfive'=>'required',
             'dserverone'=>'required',
-            'dservertwo'=>'required',          
+                    
         ];
     }
 }

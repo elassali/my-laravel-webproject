@@ -43,33 +43,11 @@
                </div>
 
         <div class="form-group">
-            {!!Form::label('wserverone', 'Server One :', ['class' => 'input-group-text'])!!}
+            {!!Form::label('wserverone', 'Serie IMDB ID :', ['class' => 'input-group-text'])!!}
             {!!Form::text('wserverone', null, ['class' => 'form-control'])!!}
            </div>
 
-           <div class="form-group">
-            {!!Form::label('wservertwo', 'Server Two :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('wservertwo', null, ['class' => 'form-control'])!!}
-           </div>
-
-           <div class="form-group">
-            {!!Form::label('wserverthree', 'Server Three :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('wserverthree', null, ['class' => 'form-control'])!!}
-           </div>
-
-           <div class="form-group">
-            {!!Form::label('wserverfour', 'Server Four :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('wserverfour', null, ['class' => 'form-control'])!!}
-           </div>
-
-           <div class="form-group">
-            {!!Form::label('wserverfive', 'Server Five :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('wserverfive', null, ['class' => 'form-control'])!!}
-           </div>
-           <div class="form-group">
-            {!!Form::label('wserversix', 'Server Six :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('wserversix', null, ['class' => 'form-control'])!!}
-           </div>
+           
            <br />
            <div align="center">
            <button type="button" name="btn_personal_details" id="btn_login_details" class="btn btn-info btn-lg">Next</button>
@@ -83,7 +61,7 @@
      <div class="panel-heading">Download Episodes</div>
      <div class="panel-body">
         <div class="form-group">
-            {!!Form::label('dserverone', 'Server One :', ['class' => 'input-group-text'])!!}
+            {!!Form::label('dserverone', 'Server one :', ['class' => 'input-group-text'])!!}
             {!!Form::text('dserverone', null, ['class' => 'form-control'])!!}
            </div>
 
@@ -97,19 +75,6 @@
             {!!Form::text('dserverthree', null, ['class' => 'form-control'])!!}
            </div>
 
-           <div class="form-group">
-            {!!Form::label('dserverfour', 'Server Four :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('dserverfour', null, ['class' => 'form-control'])!!}
-           </div>
-
-           <div class="form-group">
-            {!!Form::label('dserverfive', 'Server Five :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('dserverfive', null, ['class' => 'form-control'])!!}
-           </div>
-           <div class="form-group">
-            {!!Form::label('dserversix', 'Server Six :', ['class' => 'input-group-text'])!!}
-            {!!Form::text('dserversix', null, ['class' => 'form-control'])!!}
-           </div>
            <br />
            <div align="center">
            <button type="button" name="previous_btn_contact_details" id="previous_btn_contact_details" class="btn btn-default btn-lg">Previous</button>

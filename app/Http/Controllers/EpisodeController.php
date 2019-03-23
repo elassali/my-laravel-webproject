@@ -72,11 +72,6 @@ class EpisodeController extends Controller
         $watch['season_id']=$input['season_id'];
         $watch['episode_number']=$input['episode_number'];
         $watch['server1']=$input['wserverone'];
-        $watch['server2']=$input['wservertwo'];
-        $watch['server3']=$input['wserverthree'];
-        $watch['server4']=$input['wserverfour'];
-        $watch['server5']=$input['wserverfive'];
-        $watch['server6']=$input['wserversix'];
         //download servers
         $down['serie_id']=$input['serie_id'];
         $down['season_id']=$input['season_id'];
@@ -84,9 +79,6 @@ class EpisodeController extends Controller
         $down['server1']=$input['dserverone'];
         $down['server2']=$input['dservertwo'];
         $down['server3']=$input['dserverthree'];
-        $down['server4']=$input['dserverfour'];
-        $down['server5']=$input['dserverfive'];
-        $down['server6']=$input['dserversix'];
         // save theme
         $watch->save();
         $down->save();
