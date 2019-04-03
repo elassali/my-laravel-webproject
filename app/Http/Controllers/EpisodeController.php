@@ -155,7 +155,7 @@ class EpisodeController extends Controller
         // save theme
         $watch->save();
         $down->save();
-        return redirect('/episode');
+        return redirect()->route('episode.index');
     }
 
     /**
@@ -168,6 +168,6 @@ class EpisodeController extends Controller
     {
         $watch= Watchepisode::findOrFail($id)->delete();
         $down=  Downloadepisode::findOrFail($id)->delete();
-        return redirect('/episode');
+        return redirect()->route('episode.index');
     }
 }

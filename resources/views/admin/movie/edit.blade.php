@@ -54,11 +54,11 @@
            <div class="form-group">
             {!!Form::label('category', 'Movie Category :', ['class' => 'input-group-text'])!!}
             <br>
-            {!!Form::select('category[]',$category,'',['id'=>'category','class'=>'form-control','multiple' => true])!!}
+            {!!Form::select('category[]',$category,$movie->category,['id'=>'category','class'=>'form-control','multiple' => true])!!}
            </div>
            <div class="form-group">
             {!!Form::label('quality', 'Movie Quality:', ['class' => 'input-group-text'])!!}
-            {!!Form::select('quality',[''=>'Choose Quality','WEB-DL'=>'WEB-DL','HDRIP'=>'HDRIP','HDCAM'=>'HDCAM','HDTV'=>'HDTV','BluRay'=>'BluRay'],'',['class'=>'form-control'])!!}
+            {!!Form::select('quality',[''=>'Choose Quality','WEB-DL'=>'WEB-DL','HDRIP'=>'HDRIP','HDCAM'=>'HDCAM','HDTV'=>'HDTV','BluRay'=>'BluRay'],$movie->quality,['class'=>'form-control'])!!}
            </div>
 
            <div class="form-group">

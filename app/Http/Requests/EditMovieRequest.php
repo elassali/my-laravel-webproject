@@ -31,11 +31,6 @@ class EditMovieRequest extends FormRequest
             'story'=>'required',
             'trailer'=>'required',
             'wserverone'=>'required',
-            'wservertwo'=>'required',
-            'wserverthree'=>'required',
-            'dserverone'=>'required',
-            'dservertwo'=>'required',
-            'dserverthree'=>'required',
         ];
     }
 }

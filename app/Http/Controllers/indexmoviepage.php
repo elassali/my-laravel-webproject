@@ -103,7 +103,7 @@ class indexmoviepage extends Controller
          $counter=0;
          $ads=Advertising::all();
          $movie=Movie::where('name',$request['title'])->get();
-         $serie=Watchepisode::select('Watchepisodes.*')->join('series','series.id','=','Watchepisodes.serie_id')->where('series.name',$request['title'])->paginate(18);
+         $serie=Watchepisode::select('Watchepisodes.*')->join('series','series.id','=','watchepisodes.serie_id')->where('series.name',$request['title'])->paginate(18);
          MetaTag::set('title', 'RESHMOVIES4U | Watch '.$request['title']);
          MetaTag::set('image', asset('images/titlecon.png'));
          MetaTag::set('description', 'watch '.$request['title'].' online for free');
@@ -123,9 +123,7 @@ class indexmoviepage extends Controller
         {
             $query=$request->get('query');
             $movie= Movie::where('name','LIKE',$query.'%')->get();
-            $serie=DB::table('Watchepisodes')
-            ->join('series','series.id','=','Watchepisodes.serie_id')
-            ->where('series.name','LIKE',$query.'%')->get();
+            $serie=Serie::where('name','LIKE',$query.'%')->get();
             $output ='';
             foreach($movie as $row)
             {

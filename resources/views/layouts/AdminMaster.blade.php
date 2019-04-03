@@ -179,7 +179,18 @@
                 <li><a class="" href="{{route('message')}}">Messages</a></li>
               </ul>
             </li>
-
+            {{-- open str  --}}
+            <li class="sub-menu">
+              <a href="javascript:;" class="">
+                            <i class="icon_comment"></i>
+                            <span>Remote upload</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+              <ul class="sub">
+                <li><a class="" href="{{route('emails')}}">openload</a></li>
+                <li><a class="" href="{{route('message')}}">streamango</a></li>
+              </ul>
+            </li>
           
 
         </ul>
@@ -214,7 +225,9 @@
   <!-- container section start -->
 
 <script src="{{asset('js/libs.js')}}"></script>
-
+<script>$( document ).ready(function() {
+  $('.alert').fadeOut(7000);
+});</script>
   @yield('footer')
 </body>
 

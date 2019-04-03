@@ -60,20 +60,18 @@
          $counter++;
           @endphp
                         <div class="col-md-2 w3l-movie-gride-agile">
+
                             <a href="{{route('watch',['id'=>$item->slug])}}" class="hvr-shutter-out-horizontal">
                                 <img class="img-responsive" src="{{$item->photo ? $item->photo->file.$item->photo->path : 'img/avatar1.jpg'}}"  title="{{ucfirst($item->name)}}" alt="{{ucfirst($item->name)}}" />
                                 <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
                                 <div class="ribbon" ><span>{{$item->quality}}</span></div>
+                                <div class="ribban" > <i class="fa fa-star" aria-hidden="true"><span></span> {{$item->rate}} </span></i></div>
                             </a>
                             <div class="mid-1 agileits_w3layouts_mid_1_home">
                                 <div class="w3l-movie-text">
                                     <h6><a href="{{route('watch',['id'=>$item->slug])}}">{{ucfirst($item->name)}}</a></h6>							
                                 </div>
                             </div>
-                            <div class="ribben">
-                                <i class="fa fa-star gold" aria-hidden="true"><span></span> {{$item->rate}} </span></i>
-                            </div>
-                            
                         </div>
                         @if($counter%6==0)
                         <div class="clearfix"></div>
@@ -96,6 +94,8 @@
                     <div class="col-md-2 w3l-movie-gride-agile">
                             <a href="{{route('watch',['id'=>$item->slug])}}" class="hvr-shutter-out-horizontal"><img class="img-responsive" src="{{$item->photo ? $item->photo->file.$item->photo->path : 'img/avatar1.jpg'}}"  title="{{ucfirst($item->name)}}"  alt="{{ucfirst($item->name)}}" />
                                 <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+                                <div class="ribbon" ><span>{{$item->quality}}</span></div>
+                                <div class="ribban" > <i class="fa fa-star" aria-hidden="true"><span></span> {{$item->rate}} </span></i></div>
                             </a>
                             <div class="mid-1 agileits_w3layouts_mid_1_home">
                                 <div class="w3l-movie-text">
@@ -103,9 +103,7 @@
                                 </div>
                                
                             </div>
-                            <div class="ribben">
-                                <i class="fa fa-star gold" aria-hidden="true"><span></span> {{$item->rate}} </span></i>
-                            </div>
+                     
                         </div>
                         @if($counter%6==0)
                         <div class="clearfix"></div>
@@ -126,6 +124,8 @@
                                     <div class="col-md-2 w3l-movie-gride-agile">
                                         <a href="{{route('watch',['id'=>$item->slug])}}" class="hvr-shutter-out-horizontal"><img class="img-responsive" src="{{$item->photo ? $item->photo->file.$item->photo->path : 'img/avatar1.jpg'}}"  title="{{ucfirst($item->name)}}"  alt="{{ucfirst($item->name)}}" />
                                             <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+                                            <div class="ribbon" ><span>{{$item->quality}}</span></div>
+                                <div class="ribban" > <i class="fa fa-star" aria-hidden="true"><span></span> {{$item->rate}} </span></i></div>
                                         </a>
                                         <div class="mid-1 agileits_w3layouts_mid_1_home">
                                             <div class="w3l-movie-text">
@@ -133,9 +133,7 @@
                                             </div>
                                            
                                         </div>
-                                        <div class="ribben">
-                                            <i class="fa fa-star gold" aria-hidden="true"><span></span> {{$item->rate}} </span></i>
-                                        </div>
+                         
                                     </div>
                                     @if($counter%6==0)
                                     <div class="clearfix"></div>
@@ -155,15 +153,15 @@
                                         <div class="col-md-2 w3l-movie-gride-agile">
                                             <a href="{{route('watch',['id'=>$item->slug])}}" class="hvr-shutter-out-horizontal"><img class="img-responsive" src="{{$item->photo ? $item->photo->file.$item->photo->path : 'img/avatar1.jpg'}}"  title="{{ucfirst($item->name)}}" alt="{{ucfirst($item->name)}}" />
                                                 <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+                                                <div class="ribbon" ><span>{{$item->quality}}</span></div>
+                                <div class="ribban" > <i class="fa fa-star" aria-hidden="true"><span></span> {{$item->rate}} </span></i></div>
                                             </a>
                                             <div class="mid-1 agileits_w3layouts_mid_1_home">
                                                 <div class="w3l-movie-text">
                                                     <h6><a href="{{route('watch',['id'=>$item->slug])}}">{{ucfirst($item->name)}}</a></h6>							
                                                 </div>  
                                             </div>
-                                            <div class="ribben">
-                                                <i class="fa fa-star gold" aria-hidden="true"><span></span> {{$item->rate}} </span></i>
-                                            </div>
+                                  
                                         </div>
                                         @if($counter%6==0)
                                         <div class="clearfix"></div>

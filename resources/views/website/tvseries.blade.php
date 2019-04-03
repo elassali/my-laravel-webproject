@@ -12,18 +12,16 @@
                                 <div class="col-md-2 w3l-movie-gride-agile">
                                         
                                     <a href="{{route('watchserie',['idserie'=>$item->serie->slug ,'idseason'=>$item->season->slug ,'idepisode'=>$item->slug])}}" class="hvr-shutter-out-horizontal">                                                           
-                                            <img src="{{$item->serie->photo->file.$item->serie->photo->path}}" title="{{ucfirst($item->serie->name)}}" class="img-responsive" alt="{{$item->serie->slug}}" />                         
+                                   <img src="{{$item->serie->photo->file.$item->serie->photo->path}}" title="{{ucfirst($item->serie->name)}}" class="img-responsive" alt="{{$item->serie->slug}}" />                         
                                     <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
                                     <div class="ribbon"><span>SE{{$item->season->season_number}} EP{{$item->episode_number}}</span></div>
+                                    <div class="ribban" > <i class="fa fa-star" aria-hidden="true"><span></span>  {{$item->serie->rate }} </span></i></div>
                                     </a> 
                                     <div class="mid-1 agileits_w3layouts_mid_1_home">
                                         <div class="w3l-movie-text">
                                         <h4><a href="{{route('watchserie',['idserie'=>$item->serie->slug ,'idseason'=>$item->season->slug ,'idepisode'=>$item->slug])}}">{{ucfirst($item->serie->name)}}</a></h4>							
                                         </div>
                                         
-                                    </div>
-                                    <div class="ribben">
-                                        <i class="fa fa-star gold" aria-hidden="true"><span></span> {{$item->serie->rate }}</span></i>
                                     </div>
                                 </div>
                          @endforeach

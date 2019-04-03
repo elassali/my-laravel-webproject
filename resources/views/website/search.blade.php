@@ -34,7 +34,8 @@
                                            <div class="col-md-2 w3l-movie-gride-agile">
                                                <a href="{{route('watch',['id'=>$item->slug])}}" class="hvr-shutter-out-horizontal"><img   src="{{$item->photo ? $item->photo->file.$item->photo->path : 'img/avatar1.jpg'}}"  title="album-name" style="height: 268px; width:182px;" alt=" " />
                                                    <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
-                                                   <div class="ribbon" ><span>{{$item->quality}}</span></div>
+                                                   <div class="ribbon" ><span>{{$item->quality}}</span></div>                                   
+                                                  <div class="ribban" > <i class="fa fa-star" aria-hidden="true"><span></span> {{$item->rate}} </span></i></div>
                                                </a>
                                                <div class="mid-1 agileits_w3layouts_mid_1_home">
                                                    <div class="w3l-movie-text">
@@ -42,9 +43,7 @@
                                                    </div>
                                
                                                </div>
-                                               <div class="ribben">
-                                                   <i class="fa fa-star gold" aria-hidden="true"><span></span> {{$item->rate}} </span></i>
-                                               </div>
+                                      
                                            </div>
                                            @if($counter%6==0)
                                            <div class="clearfix"></div>
@@ -56,22 +55,19 @@
                                     $counter++;
                                      @endphp           
                                 <div class="col-md-2 w3l-movie-gride-agile">                                   
-                                    <a href="{{route('watchserie',['idepisode'=>$item->id,'idserie'=>$item->serie_id,'idseason'=>$item->season_id])}}" class="hvr-shutter-out-horizontal">
-                                            <h4 class="ribbon"> Season {{$item->season->season_number}}</h4> 
-                                            <h4 class="ribbon">Episode {{$item->episode_number}}</h4>                        
+                                    <a href="{{route('watchserie',['idepisode'=>$item->id,'idserie'=>$item->serie_id,'idseason'=>$item->season_id])}}" class="hvr-shutter-out-horizontal">                        
                                             <img src="{{$item->serie->photo->file.$item->serie->photo->path}}" title="album-name" style="height: 268px; width:182px;" alt=" " />                         
                                     <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
                                     <div class="ribbon"><span>SE{{$item->season->season_number}} EP{{$item->episode_number}}</span></div>
+                                    <div class="ribban" > <i class="fa fa-star" aria-hidden="true"><span></span>  {{$item->serie->rate }} </span></i></div>
                                     </a>
                                     <div class="mid-1 agileits_w3layouts_mid_1_home">
                                         <div class="w3l-movie-text">
-                                            <h6><a href="{{route('watchserie',['idepisode'=>$item->id,'idserie'=>$item->serie_id,'idseason'=>$item->season_id])}}">{{ucfirst($item->serie->name)}}</a></h6>							
+                                            <h6><a href="{{route('watchserie',['idserie'=>$item->serie->slug ,'idseason'=>$item->season->slug ,'idepisode'=>$item->slug])}}">{{ucfirst($item->serie->name)}}</a></h6>							
                                         </div>
                                         
                                     </div>
-                                    <div class="ribben">
-                                        <i class="fa fa-star gold" aria-hidden="true"><span></span> {{$item->serie->rate }}</span></i>
-                                    </div>
+                              
                                 </div>
                                 @if($counter%6==0)
                                 <div class="clearfix"></div>

@@ -8,8 +8,9 @@
                 <div class="alert alert-success alert-dismissible" style="margin-top:10px;">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         {{ $success }}
-                      </div> 
+                      </div>                 
                @endif
+         
             </div>
  {!! Form::open(['method'=>'POST','action'=>'CategoryController@store']) !!}
     <div class="col-lg-8">

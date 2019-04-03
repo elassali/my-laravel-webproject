@@ -32,7 +32,7 @@ class Serie extends Model
     /////////////////////////////////////////////////////////////////////////////////
     public function country()
     {
-      return $this->belongsTo('App\countrie');
+      return $this->belongsTo('App\Countrie');
     }
     
     public function category()

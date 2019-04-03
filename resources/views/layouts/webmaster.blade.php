@@ -2,19 +2,21 @@
 <html lang="en">
 <head>
 		
-		 <title>{{ MetaTag::get('title') }}</title>
+	<title>{{ MetaTag::get('title') }}</title>
 
-		 {{-- {!! MetaTag::tag('titlecon.png') !!} --}}
+	{{-- {!! MetaTag::tag('titlecon.png') !!} --}}
 
-		 {!! MetaTag::openGraph() !!}
-        
-		 {!! MetaTag::twitterCard() !!}
+	{!! MetaTag::openGraph() !!}
 
-		 <link rel="shortcut icon" type="image/x-icon" href="{!! MetaTag::get('image', asset('images/titlecon.png')) !!}" />
+	{!! MetaTag::twitterCard() !!}
 
-		 {{-- ---------------------------- to edit later share image button --}}
+	<link rel="shortcut icon" type="image/x-icon" href="{!! MetaTag::set('image', asset('images/titlecon.png')) !!}" />
+		 {{-- og properties --}}
+		<meta property="og:image"   content="{!! MetaTag::get('image', asset('images/titlecon.png')) !!}" />
+				<meta property="og:image:width" content="200" />
+			<meta property="og:image:height" content="300" />
+	{{-- ---------------------------- to edit later share image button --}}
 
-		 {!! MetaTag::tag('image', asset('https://cdn.pixabay.com/photo/2015/09/16/08/55/online-942408_960_720.jpg')) !!}
 
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -110,11 +112,10 @@
 						  }
 						$('#suggestion').fadeIn();
 						if(query!=='')
-						  {
-							
+						  {						
 							 $.ajax({
 								url:'{{ route('autocomplete.fetch') }}',
-								method:"POST",
+								method:"GET",
 								data:{query:query , _token:_token},
 								success:function(data)
 								{
@@ -145,7 +146,7 @@
 		       	});
 				});
             $(document).on('click','.resulta',function(){
-							$('#title').val($(this).text());
+							$('#title').val($(this).text().trim());
 							$('#suggestion').fadeOut();
 							$('#searchit').submit();
 						});

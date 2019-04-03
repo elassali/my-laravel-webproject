@@ -49,6 +49,8 @@ Route::resource('/advirtisement','Advirtisement');
 Route::get('/messages',['as'=>'message','uses'=>'ContactController@index']); 
 Route::get('/messages/emails',['as'=>'emails','uses'=>'ContactController@emails']);
 Route::delete('/message/delete/{id}',['as'=>'destroy','uses'=>'ContactController@destroy']);
+Route:resource('/remote','Remote.php');
+
 });
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::resource('/','indexmoviepage');
@@ -67,7 +69,7 @@ Route::get('/privacy',['as'=>'privacy','uses'=>'indexmoviepage@privacy']);
 
 //auto complete route
 
-Route::post('/autocomplete','indexmoviepage@fetch')->name('autocomplete.fetch');
+Route::get('/autocomplete','indexmoviepage@fetch')->name('autocomplete.fetch');
 
 
 

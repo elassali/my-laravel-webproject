@@ -31,8 +31,7 @@ class CreateMovieRequest extends FormRequest
             'rate'=>'required',
             'story'=>'required',
             'trailer'=>'required',
-            'wserverone'=>'required',          
-            'dserverone'=>'required',
+            'wserverone'=>'required', 
         ];
     }
 }

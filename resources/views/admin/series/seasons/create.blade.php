@@ -14,7 +14,7 @@
     <div class="col-lg-8">
             <div class="form-group">
                     {!!Form::label('serie_id', 'Serie Name :', ['class' => 'input-group-text'])!!}
-                    {!!Form::select('serie_id',[''=>'Choose Role']+$serie,'',['class' =>'form-control custom-select'])!!}
+                    {!!Form::select('serie_id',[''=>'Choose Serie']+$serie,'',['class' =>'form-control custom-select'])!!}
             </div>
                 
             <div class="form-group">
