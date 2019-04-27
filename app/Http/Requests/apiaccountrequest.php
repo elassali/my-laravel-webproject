@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateEpisode extends FormRequest
+class apiaccountrequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,9 @@ class CreateEpisode extends FormRequest
     public function rules()
     {
         return [
-            'serie_id'=>'required',
-            'season_id'=>'required',
-            'episode_number'=>'required',
-            'wserverone'=>'required',
-                    
+            'login' => 'required',
+            'key' => 'required',
+            'host' => 'required',
         ];
     }
 }

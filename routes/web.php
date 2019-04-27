@@ -25,6 +25,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware'=>'Worker'],function()
 {
+    Route::get('/admin/movie/createbyurl',['as' => 'movie.createbyurl' , 'uses' => 'Movie_Controller@createbyurl']);
+    Route::Post('/admin/movie/storebyurl',['as' => 'movie.storebyurl' , 'uses' => 'Movie_Controller@storebyurl']);
+    //==============================================================>
+    Route::get('/admin/episode/multiepisodes',['as'=>'episode.multiepisodes','uses'=>'EpisodeController@createmultiepisodes']);
+    Route::Post('/admin/episode/multistore' ,['as'=>'multistore' , 'uses' => 'EpisodeController@multistore']);
+    //==============================================================>
     Route::resource('/admin/movie','Movie_Controller');
     Route::resource('/admin/serie','SerieController');
     Route::resource('/admin/season','SeasonController');
@@ -36,7 +42,7 @@ Route::group(['middleware'=>'Worker'],function()
 
 
 
-
+ 
  
 ////////////////////////////////////////////////////////////////////////
 Route::group(['middleware'=>'Admin'],function()
@@ -49,8 +55,8 @@ Route::resource('/advirtisement','Advirtisement');
 Route::get('/messages',['as'=>'message','uses'=>'ContactController@index']); 
 Route::get('/messages/emails',['as'=>'emails','uses'=>'ContactController@emails']);
 Route::delete('/message/delete/{id}',['as'=>'destroy','uses'=>'ContactController@destroy']);
-Route:resource('/remote','Remote.php');
-
+Route::resource('/remote','Remot');
+Route::resource('/admin/apiaccount','api_controller');
 });
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::resource('/','indexmoviepage');

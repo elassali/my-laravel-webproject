@@ -1428,7 +1428,7 @@ h3.head {
 		margin-left: auto;
 		margin-right: auto;
 	}
-	.w3l-movie-gride-agile:nth-child(6), .w3l-movie-gride-agile:nth-child(12) {
+	.w3l-movie-gride-agile:nth-child(6), .w3l-movie-gride-agile:nth-child(12) { 
 		margin-left: auto !important;
 	}
 	.conjuring_w3 {
@@ -1565,4 +1565,7 @@ h3.head {
     border-right: 3px solid #0066cc;
     border-bottom: 3px solid transparent;
     border-top: 3px solid #0066cc;
+  }
+  #profile-tab{
+	  display: none;
   }

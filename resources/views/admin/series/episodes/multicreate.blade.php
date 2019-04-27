@@ -9,7 +9,7 @@
               </div> 
        @endif
     </div>
-    {!! Form::open(['method'=>'POST','action'=>'EpisodeController@store']) !!}
+    {!! Form::open(['method'=>'POST','action'=>'EpisodeController@multistore']) !!}
   <ul class="nav nav-tabs">
    <li class="nav-item">
     <a class="nav-link active_tab1" style="border:1px solid #ccc" id="list_login_details">Watch Episodes</a>
@@ -39,7 +39,7 @@
 
             <div class="form-group"> 
                 {!!Form::label('episode_number', 'Episode Number :', ['class' => 'input-group-text'])!!}
-                {!!Form::text('episode_number', null, ['class' => 'form-control'])!!}
+                {!!Form::number('episode_number', null, ['class' => 'form-control'])!!}
                </div>
 
         <div class="form-group">

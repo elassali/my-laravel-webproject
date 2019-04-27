@@ -103,10 +103,10 @@
 					$(document).ready(function(){					
 
 				$('#title').keyup(function(){
-	
+					$('#dropdown').show();
 						  var query = $(this).val();
 						  var _token = $('input[name="_token"]').val();
-						 if(query=='')
+						 if(query === '' || query === null)
 						  {
 							$('#suggestion').hide();
 						  }
@@ -119,7 +119,7 @@
 								data:{query:query , _token:_token},
 								success:function(data)
 								{
-									if (!$.trim(data))
+									if(!$.trim(data))
 									{
 										$('#dropdown').hide();
 									}
@@ -140,8 +140,12 @@
 								{
 									console.log('failed');
 								}
-							 });
-							
+							 });							
+						  }
+							if(query === '' || query === null)
+						  {
+							$('#suggestion').hide();
+							$('#dropdown').hide();
 						  }
 		       	});
 				});
@@ -222,7 +226,7 @@
 									<li>
 										<div class="col-sm-4">
 											<ul class="multi-column-dropdown">												
-												<li><a href="{{route('country',['country'=>'UnitedStates'])}}">United States</a></li>
+												<li><a href="{{route('country',['country'=>'USA'])}}">United States</a></li>
 												<li><a href="{{route('country',['country'=>'UnitedKingdom'])}}">United Kingdom</a></li>
 												<li><a href="{{route('country',['country'=>'Frensh'])}}">Frensh</a></li>
 												<li><a href="{{route('country',['country'=>'Spain'])}}">Spain</a></li>

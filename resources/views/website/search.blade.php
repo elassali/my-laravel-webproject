@@ -13,7 +13,7 @@
                                 <div class="container">
                                     <div class="agileits-single-top">
                                         <ol class="breadcrumb">
-                                          <li><a href="{{route('home')}}">Home</a></li>
+                                          <li><a href="{{route('index')}}">Home</a></li>
                                           <li>Search</li>
                                           <li class="active">{{$request['title']}}</li>
                                         </ol>
@@ -22,7 +22,7 @@
                             </div>
                                  <div class="container">
                         <div class="browse-inner">
-                            @if ($movie->isEmpty() && $serie->isEmpty())
+                            @if ($movie->isEmpty() && $season->isEmpty())
                                 <h1 class="text-center">No result found</h1>
                             @endif
                             <!-- ~~~~~~~~~~~~~~~~~~~~~~~~start~~~~~~~~~~~~~~!-->
@@ -43,42 +43,37 @@
                                                    </div>
                                
                                                </div>
-                                      
+                                       
                                            </div>
                                            @if($counter%6==0)
                                            <div class="clearfix"></div>
                                            @endif
                                     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~end~~~~~~~~~~~~~~~~~~~~~~~~~~~~!-->
                                     @endforeach
-                                    @foreach ($serie as $item)   
+
+                                    @foreach ($season as $item)  
                                     @php
                                     $counter++;
                                      @endphp           
-                                <div class="col-md-2 w3l-movie-gride-agile">                                   
-                                    <a href="{{route('watchserie',['idepisode'=>$item->id,'idserie'=>$item->serie_id,'idseason'=>$item->season_id])}}" class="hvr-shutter-out-horizontal">                        
-                                            <img src="{{$item->serie->photo->file.$item->serie->photo->path}}" title="album-name" style="height: 268px; width:182px;" alt=" " />                         
-                                    <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
-                                    <div class="ribbon"><span>SE{{$item->season->season_number}} EP{{$item->episode_number}}</span></div>
-                                    <div class="ribban" > <i class="fa fa-star" aria-hidden="true"><span></span>  {{$item->serie->rate }} </span></i></div>
-                                    </a>
-                                    <div class="mid-1 agileits_w3layouts_mid_1_home">
-                                        <div class="w3l-movie-text">
-                                            <h6><a href="{{route('watchserie',['idserie'=>$item->serie->slug ,'idseason'=>$item->season->slug ,'idepisode'=>$item->slug])}}">{{ucfirst($item->serie->name)}}</a></h6>							
-                                        </div>
-                                        
+                                 <div class="col-md-2 w3l-movie-gride-agile">
+                                                        <a href="{{route('season',['slugserie'=>$item->serie->slug,'slugseason'=>$item->slug])}}" class="hvr-shutter-out-horizontal"><img src="{{$item->serie->photo->file.$item->serie->photo->path}}" title="album-name" style="height: 268px; width:182px;" alt=" " />
+                                                                    <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+                                                                </a>
+                                                                <div class="mid-1 agileits_w3layouts_mid_1_home">
+                                                                    <div class="w3l-movie-text">
+                                                                    <h3><a href="{{route('season',['slugserie'=>$item->serie->slug,'slugseason'=>$item->slug])}}">Season {{$item->season_number}}</a></h3>							
+                                                                    </div>                                                         
+                                                                </div>
+                                                               
                                     </div>
-                              
-                                </div>
                                 @if($counter%6==0)
                                 <div class="clearfix"></div>
                                 @endif
-                         @endforeach
+                              @endforeach
                             </div>
                 </div>
             <!--//browse-agile-w3ls -->
-                    <div class="blog-pagenat-wthree">
-                      {{$serie->links()}}
-                    </div>
+                    
                 </div>
 
             </div>

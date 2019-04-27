@@ -43,6 +43,40 @@
       <div class="top-nav notification-row">
         <!-- notificatoin dropdown start-->
         <ul class="nav pull-right top-menu">
+           <!-- inbox notificatoin start-->
+           <li id="mail_notificatoin_bar" class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                              <i class="glyphicon glyphicon-envelope"></i>
+              <span class="badge bg-important">{{session('counter')}}</span>
+                          </a>
+              <ul class="dropdown-menu extended inbox">
+                <div class="notify-arrow notify-arrow-blue"></div>
+                <li>
+                  <p class="blue">You have {{session('counter')}} new messages</p>
+                </li>
+                @isset($indexmessage)
+                    
+                @foreach ($indexmessage as $item)
+                <li>
+                  <a href="{{route('message')}}">
+                                      <span class="subject">
+                                      <span class="from text-primary">{{$item->firstname}}</span>
+                                      <span class="time text-danger">{{$item->created_at->diffForHumans()}}</span>
+                                      </span>
+                                      <span class="message text-success">
+                                      {{$item->subject}}
+                                      </span>
+                                  </a>
+                </li>
+                @endforeach
+                @endisset
+                <li>
+                  <a href="{{route('message')}}">See all messages</a>
+                  <li><a class="" href="{{route('emails')}}">Mail List</a></li>
+                </li>
+              </ul>
+            </li>
+            <!-- inbox notificatoin end -->
           <!-- user login dropdown start-->
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -89,6 +123,13 @@
               <li><a class="" href="{{route('user.create')}}">Create User</a></li>
             </ul>
           </li>
+          {{-- api account --}}
+          <li class="active">
+              <a class="" href="{{route('apiaccount.index')}}">
+                            <i class="icon_lifesaver"></i>
+                            <span>Api Accounts</span>
+                        </a>
+            </li>
           <li class="sub-menu">
             <a href="javascript:;" class="">
                           <i class="icon_desktop"></i>
@@ -98,6 +139,7 @@
             <ul class="sub">
               <li><a class="" href="{{route('movie.index')}}">View Movies</a></li>
               <li><a class="" href="{{route('movie.create')}}">Create Movie</a></li>
+              <li><a class="" href="{{route('movie.createbyurl')}}">Create Movie By Url</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -154,6 +196,7 @@
               <ul class="sub">
                 <li><a class="" href="{{route('episode.index')}}">Episodes</a></li>
                 <li><a class="" href="{{route('episode.create')}}">Create Episode</a></li>
+                <li><a class="" href="{{route('episode.multiepisodes')}}">Create Multi Episodes</a></li>
               </ul>
             </li>
 
@@ -162,23 +205,13 @@
                             <i class="icon_currency_alt "></i>
                             <span>Advertisement</span>
                             <span class="menu-arrow arrow_carrot-right"></span>
-                        </a>
+                        </a> 
               <ul class="sub">
                 <li><a class="" href="{{route('advirtisement.index')}}">ADS</a></li>
                 <li><a class="" href="{{route('advirtisement.create')}}">Create ADS</a></li>
               </ul>
             </li>
-            <li class="sub-menu">
-              <a href="javascript:;" class="">
-                            <i class="icon_comment"></i>
-                            <span>Messages</span>
-                            <span class="menu-arrow arrow_carrot-right"></span>
-                        </a>
-              <ul class="sub">
-                <li><a class="" href="{{route('emails')}}">Emails</a></li>
-                <li><a class="" href="{{route('message')}}">Messages</a></li>
-              </ul>
-            </li>
+           
             {{-- open str  --}}
             <li class="sub-menu">
               <a href="javascript:;" class="">
@@ -187,8 +220,8 @@
                             <span class="menu-arrow arrow_carrot-right"></span>
                         </a>
               <ul class="sub">
-                <li><a class="" href="{{route('emails')}}">openload</a></li>
-                <li><a class="" href="{{route('message')}}">streamango</a></li>
+                <li><a class="" href="{{route('remote.index')}}">openload</a></li>
+                <li><a class="" href="{{route('remote.create')}}">single video add</a></li>
               </ul>
             </li>
           

@@ -49,6 +49,27 @@ class EpisodeController extends Controller
         return view('admin.series.episodes.create',compact('serie','season','role'));
     }
 
+    /////// Create multiEpisodes
+    public function createmultiepisodes()
+    {
+        if(Auth::user()->isadmin())
+        {
+            $role='layouts.AdminMaster';
+        }
+        else if(Auth::user()->isworker())
+        { 
+            $role='layouts.WorkerMaster';
+        }
+        $serie=Serie::Pluck('name','id')->all();
+        return view('admin.series.episodes.multicreate',compact('serie','season','role'));
+    }
+
+
+ 
+
+
+
+    ////////////////////////////////////
     public function findepisode(Request $request)
     {
 
@@ -64,27 +85,54 @@ class EpisodeController extends Controller
      */
     public function store(CreateEpisode $request)
     {
-        $input=$request->all();
-        $watch= new Watchepisode;
-        $down= new Downloadepisode;
-        //watch servers
-        $watch['serie_id']=$input['serie_id'];
-        $watch['season_id']=$input['season_id'];
-        $watch['episode_number']=$input['episode_number'];
-        $watch['server1']=$input['wserverone'];
-        //download servers
-        $down['serie_id']=$input['serie_id'];
-        $down['season_id']=$input['season_id'];
-        $down['episode_number']=$input['episode_number'];
-        $down['server1']=$input['dserverone'];
-        $down['server2']=$input['dservertwo'];
-        $down['server3']=$input['dserverthree'];
-        // save theme
-        $watch->save();
-        $down->save();
-        session()->flash('success', 'Episode was added successfully!');
-        return redirect()->route('episode.create');
+                $input=$request->all();       
+                $watch= new Watchepisode;
+                $down= new Downloadepisode;
 
+                $watch['serie_id']=$input['serie_id'];
+                $watch['season_id']=$input['season_id'];
+                $watch['episode_number']=$input['episode_number'];
+                $watch['server1']=$input['wserverone'];
+                //download servers
+                $down['serie_id']=$input['serie_id'];
+                $down['season_id']=$input['serie_id'];
+                $down['episode_number']=$input['episode_number'];
+                $down['server1']=$input['dserverone'];
+                $down['server2']=$input['dservertwo'];
+                $down['server3']=$input['dserverthree'];
+                // save theme
+                $watch->save();
+                $down->save();
+            
+          session()->flash('success', 'Episodes was added successfully!');
+          return redirect()->route('episode.create');
+    }
+
+    public function multistore(CreateEpisode $request)
+    {
+        $input=$request->all();       
+            $number=$input['episode_number'];
+            for($i=1 ;$i<=$number; $i++)
+            {
+                $watch= new Watchepisode;
+                $down= new Downloadepisode;
+                $watch['serie_id']=$input['serie_id'];
+                $watch['season_id']=$input['season_id'];
+                $watch['episode_number']=$i;
+                $watch['server1']=$input['wserverone'];
+                //download servers
+                $down['serie_id']=$input['serie_id'];
+                $down['season_id']=$input['serie_id'];
+                $down['episode_number']=$i;
+                $down['server1']=$input['dserverone'];
+                $down['server2']=$input['dservertwo'];
+                $down['server3']=$input['dserverthree'];
+                // save theme
+                $watch->save();
+                $down->save();
+            }
+          session()->flash('success', 'Episodes was added successfully!');
+          return redirect()->route('episode.multiepisodes');
     }
 
     /**
@@ -137,11 +185,6 @@ class EpisodeController extends Controller
         $watch['season_id']=$input['season_id'];
         $watch['episode_number']=$input['episode_number'];
         $watch['server1']=$input['wserverone'];
-        $watch['server2']=$input['wservertwo'];
-        $watch['server3']=$input['wserverthree'];
-        $watch['server4']=$input['wserverfour'];
-        $watch['server5']=$input['wserverfive'];
-        $watch['server6']=$input['wserversix'];
         //download servers
         $down['serie_id']=$input['serie_id'];
         $down['season_id']=$input['serie_id'];
@@ -149,9 +192,6 @@ class EpisodeController extends Controller
         $down['server1']=$input['dserverone'];
         $down['server2']=$input['dservertwo'];
         $down['server3']=$input['dserverthree'];
-        $down['server4']=$input['dserverfour'];
-        $down['server5']=$input['dserverfive'];
-        $down['server6']=$input['dserversix'];
         // save theme
         $watch->save();
         $down->save();

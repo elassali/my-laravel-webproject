@@ -16,6 +16,7 @@ class Watchepisode extends Model
      * @return array
      */
 
+
     public function sluggable()
     {
         return [

@@ -99,7 +99,7 @@
                            
                                            
 		
-							<div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab"> 
+							<div role="tabpanel" class="tab-pane fade" id="profile"  aria-labelledby="profile-tab"> 
 								<div id="downl">
 									<ul class="list-group">
                                             @if(!is_null($movie->download->server1)) 

@@ -99,7 +99,7 @@
                                         
                                     </div>
                 
-                                    <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab"> 
+                                    <div role="tabpanel" class="tab-pane fade" id="profile"   aria-labelledby="profile-tab"> 
                                         <div id="downl">
                                             <ul class="list-group">
                                                  @if(!is_null($down->server1))
@@ -215,22 +215,21 @@
                     {
                         $("#season").on('click','li',function()
                         {
-                        var season_id=$(this).find("a").data('season');           
-                        var selection=$('.autoloadepi');
-                        var serie_id={{$watch->serie->id}};
+                        var season_id = $(this).find("a").data('season');           
+                        var selection = $('.autoloadepi');
+                        var serie_id = {{$watch->serie->id}};
                         var op="";
-                        
-
+        
                         $.ajax({
                                   type:'get',
                                   url:'{!!URL::to('loadepisode')!!}',
                                   data:{'id':season_id,'srid':serie_id},
+                                  dataType: 'json',
                                   success:function(data)
                                   {
-                        
-                                    for(var i=0;i<data.length;i++)
+                                    for(var i=0;i<data[0].length;i++)
                                     {
-                                      op+='<div class="col-md-1 forep"><div class="squar"> <a  href="/watchserie/'+data[i].id+'/'+data[i].serie_id+'/'+data[i].season_id+'"> <h1 class="child1">'+data[i].episode_number+'</h1><span class="child2">Episodes</span></a></div></div>';
+                                      op+='<div class="col-md-1 forep"><div class="squar" style="display:none;"> <a  href="/watchserie/'+data[1][0].slug+'/'+data[2][0].slug+'/'+data[0][i].slug+'"> <h1 class="child1">'+data[0][i].episode_number+'</h1><span class="child2">Episodes</span></a></div></div>';
                                     }
                                     selection.html("");
                                     selection.append(op);
@@ -238,9 +237,11 @@
                                   error:function(data)
                                   {
                                   }
-                        });
+                        }).done(function(){$(".squar").fadeIn(1500);});
+                       
                       });
                     });
+                    
                 
                 </script>
 

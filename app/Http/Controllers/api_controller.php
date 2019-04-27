@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Apilogins;
+use App\Http\Requests\apiaccountrequest;
 
-class Remot extends Controller
+class api_controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,8 @@ class Remot extends Controller
      */
     public function index()
     {
-         return view('admin.oplstr.singlecreate'); 
+        $api = Apilogins::all();
+        return view('admin.oplstr.apiaccount.index_create',compact('api'));
     }
 
     /**
@@ -23,7 +26,7 @@ class Remot extends Controller
      */
     public function create()
     {
-        return view('admin.oplstr.singlecreate');
+      //
     }
 
     /**
@@ -32,9 +35,17 @@ class Remot extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(apiaccountrequest $request)
     {
-        //
+        $input = $request->all();
+
+        $api= new Apilogins();
+        $api["apilogin"] = $input["login"];
+        $api["apikey"] = $input["key"];
+        $api["hostname"] = $input["host"];
+        $api->save();
+        return redirect()->route('apiaccount.index');
+
     }
 
     /**
@@ -56,7 +67,8 @@ class Remot extends Controller
      */
     public function edit($id)
     {
-        //
+        $api = Apilogins::findOrFail($id);
+        return view('admin.oplstr.apiaccount.edit',compact('api'));
     }
 
     /**
@@ -66,9 +78,16 @@ class Remot extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(apiaccountrequest $request, $id)
     {
-        //
+        $input = $request->all();
+        $api = Apilogins::findOrFail($id);
+        $api["apilogin"] = $input["login"];
+        $api["apikey"] = $input["key"];
+        $api["hostname"] = $input["host"];
+        $api->save();
+        return redirect()->route('apiaccount.index');
+
     }
 
     /**
@@ -79,6 +98,7 @@ class Remot extends Controller
      */
     public function destroy($id)
     {
-        //
+        Apilogins::where('id',$id)->delete();
+        return redirect()->route('apiaccount.index');
     }
 }

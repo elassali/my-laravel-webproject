@@ -103,11 +103,19 @@ class indexmoviepage extends Controller
          $counter=0;
          $ads=Advertising::all();
          $movie=Movie::where('name',$request['title'])->get();
-         $serie=Watchepisode::select('Watchepisodes.*')->join('series','series.id','=','watchepisodes.serie_id')->where('series.name',$request['title'])->paginate(18);
+         if($serie=Serie::where('name',$request['title'])->exists())
+         {
+            $serie=Serie::where('name',$request['title'])->first();
+            $season = Season::where('serie_id',$serie->id)->get();
+         }
+         else
+         {
+            $season = Season::where('id',$request['title'])->get();
+         }
          MetaTag::set('title', 'RESHMOVIES4U | Watch '.$request['title']);
          MetaTag::set('image', asset('images/titlecon.png'));
          MetaTag::set('description', 'watch '.$request['title'].' online for free');
-         return view('website.search',compact('counter','movie','ads','page','request','serie'));
+         return view('website.search',compact('counter','movie','ads','request','season'));
         }
         else{
             return redirect('/');
@@ -218,7 +226,9 @@ class indexmoviepage extends Controller
     public function loadepisode(Request $request)
     {
         $data=Watchepisode::where([['serie_id','=',$request->srid],['season_id','=',$request->id]])->get();
-        return response()->json($data);  
+        $serie = Serie::where('id',$request->srid)->get();
+        $season = Season::where('id',$request->id)->get();
+        echo json_encode(array($data,$serie,$season));
     }
 
     public function seasons($slugserie,$slugseason)
