@@ -259,7 +259,7 @@
 
 <script src="{{asset('js/libs.js')}}"></script>
 <script>$( document ).ready(function() {
-  $('.alert').fadeOut(7000);
+  $('.alert-success').fadeOut(7000);
 });</script>
   @yield('footer')
 </body>

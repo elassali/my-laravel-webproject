@@ -89,8 +89,8 @@ class CountryController extends Controller
      */
     public function destroy($id)
     {
-        Country::findOrFail($id)->delete();
-        return redirect('/country');
+        Countrie::findOrFail($id)->delete();
+        return redirect()->route('country.index');
 
     }
 }

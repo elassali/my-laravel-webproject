@@ -150,13 +150,23 @@ class Movie_Controller extends Controller
 
           return redirect()->route('movie.create');
     }
-
+ //store by url masse store
     public function storebyurl(Request $request)
     {
         $countrylist = Countrie::all();
-
-        $input=$request->all();
-        $url="http://www.omdbapi.com/?i=".$input['imdb']."&apikey=1c2aadc3";
+        $apikey = 'AIzaSyCBdzrJpNLhWK0rHXbtre-QBLuDZ63mu5Y'; 
+        $input = $request->all();
+        $imdbids = explode("\n",$input["imdbids"]);
+        $added =0;
+        $alreadyexist =0;
+        foreach($imdbids as $item)
+        {
+         
+        $item = trim($item);
+        $check = Watchmovie::where('server1',$item)->first();
+        if(empty($check))
+        {
+        $url="http://www.omdbapi.com/?i=".$item."&apikey=1c2aadc3";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -168,8 +178,10 @@ class Movie_Controller extends Controller
         $title = $result["Title"];
         $year = $result["Year"];
         $story = $result["Plot"];
-        $imageurl = $result["Poster"];
-        $rate = $result["imdbRating"];
+        $imageurl = $result["Poster"]; 
+        //rate 
+        $result["imdbRating"] != "N/A" ? $rate = $result["imdbRating"] : $rate = mt_rand(5,9).'.'.mt_rand(0,10);
+        ///end rate
         $imdbid = $result["imdbID"];
         $country = explode(",",$result["Country"]);
         $genre = $result["Genre"];
@@ -192,28 +204,44 @@ class Movie_Controller extends Controller
          $movie['user_id'] = $user;
          $movie['photo_id'] = $imageid;
          //loop for country
-        foreach($countrylist as $countrie)
-        {
-            if($countrie["name"] == $country[0] )
-            {
-                $movie['country_id'] = $countrie['id'];
-            }
+         $countryid = Countrie::where('name','=',$country[0])->first();
+         if(!$countryid)
+         {
+            $newcountrie = new Countrie;
+            $newcountrie['name'] = $country[0];
+            $newcountrie->save();
+            $movie['country_id'] = $newcountrie->id;
+         }
+         else{
+            $movie['country_id'] = $countryid->id;
+         }
 
-        }
+
+        $keyword = $item.'+trailer';
+        $googleApiUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' . $keyword . '&maxResults=1&key=' . $apikey;
+        $ch = curl_init();  
+        curl_setopt($ch, CURLOPT_URL, $googleApiUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $result = json_decode($response,true);
+        $result = $result["items"][0];
+        $result = $result["id"];
+         $trailer = 'https://www.youtube.com/embed/'.$result["videoId"];
          //end loop for country
          $movie['name'] = $title;
          $movie['year'] = $year;
          $movie['rate'] = $rate;
          $movie['quality'] = $input['quality'];
          $movie['story'] = $story;
-         $movie['trailer'] = $input['trailer'];
+         $movie['trailer'] = $trailer;
          $movie->save();
          //end add movie and grap movie id that just added
          $movie_id=$movie->id;
          // add category for that movie
-        
-                  
-      
             
         $category = Category::pluck('name','id')->all();
 
@@ -237,15 +265,21 @@ class Movie_Controller extends Controller
          //download server
          $downl=new Downloadmovie;
          $downl['movie_id']=$movie_id;
-         $downl['server1']='null';
-         $downl['server2']='null';
-         $downl['server3']='null';
-         $downl->save();
+         $downl['server1']='';
+         $downl['server2']='';
+         $downl['server3']='';
+         $downl->save();   
+         //
+         $added++;
+        }
+        else
+        $alreadyexist++;
+        
+    }
+    //sesion added succefly
+    session()->flash('success', $added.' Movie was added successfully! '.$alreadyexist.' already exist');
+    return redirect()->route('movie.createbyurl');
 
-      //sesion added succefly
-       session()->flash('success', 'Movie was added successfully!');
-
-         return redirect()->route('movie.createbyurl');
 
     }
 
