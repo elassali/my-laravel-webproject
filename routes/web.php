@@ -13,12 +13,8 @@ use App\Http\Middleware\Worker;
 |
 */
 
-Route::get('/index', function () {
-    return view('website.genre');
-});
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 ////////////////////////////////////////////////////////////////////////////
 
@@ -39,11 +35,6 @@ Route::group(['middleware'=>'Worker'],function()
     Route::get('logout', ['as'=>'logout','uses'=>'Auth\LoginController@logout']);
 
 });
-
-
-
- 
- 
 ////////////////////////////////////////////////////////////////////////
 Route::group(['middleware'=>'Admin'],function()
 {
@@ -54,28 +45,22 @@ Route::resource('/country','CountryController');
 Route::resource('/advirtisement','Advirtisement');
 Route::get('/messages',['as'=>'message','uses'=>'ContactController@index']); 
 Route::get('/messages/emails',['as'=>'emails','uses'=>'ContactController@emails']);
-Route::delete('/message/delete/{id}',['as'=>'destroy','uses'=>'ContactController@destroy']);
+Route::delete('/message/delete/{id}',['as'=>'destroy','uses'=>'ContactController@destroy']); 
 Route::resource('/remote','Remot');
 Route::resource('/admin/apiaccount','api_controller');
 });
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Route::resource('/','indexmoviepage');
+Route::get('/watchserie/{idepisode}',['as'=>'watchserie','uses'=>'indexmoviepage@watchserie']);
 Route::get('/watch/{id}',['as'=>'watch','uses'=>'indexmoviepage@watch']);
 Route::get('/tv-serie',['as'=>'tv-serie','uses'=>'indexmoviepage@tvseries']);
-Route::get('watchserie/{idserie}/{idseason}/{idepisode}',['as'=>'watchserie','uses'=>'indexmoviepage@watchserie']);
 Route::get('/loadepisode','indexmoviepage@loadepisode');
 Route::get('/season/{serie}/{season}',['as'=>'season','uses'=>'indexmoviepage@seasons']);
-Route::Post('/send','indexmoviepage@message');
 Route::get('/contact',['as'=>'contact','uses'=>'indexmoviepage@contact']);
 Route::get('/genre/{genre}',['as'=>'genre','uses'=>'indexmoviepage@genre']);
 Route::get('/country/{country}',['as'=>'country','uses'=>'indexmoviepage@country']);
 Route::get('/search',['as'=>'search','uses'=>'indexmoviepage@search']);
 Route::get('/privacy',['as'=>'privacy','uses'=>'indexmoviepage@privacy']);
-
-
 //auto complete route
-
 Route::get('/autocomplete','indexmoviepage@fetch')->name('autocomplete.fetch');
-
-
-
+Route::Post('/send','indexmoviepage@message');
+Route::resource('/','indexmoviepage');

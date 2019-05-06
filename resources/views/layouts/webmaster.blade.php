@@ -267,12 +267,13 @@
 
 
 <!-- banner-bottom -->
+@if(!empty($myvariable))
 <div class="banner-bottom">
 	<div class="container">
 		<div class="w3_agile_banner_bottom_grid">
 			<h4 class="latest-text w3_latest_text" style="margin: 0% 0% 2%;">IT MAY INTEREST YOU</h4>
 			<div id="owl-demo" class="owl-carousel owl-theme">
-
+       
 				<!--start !-->
 				@foreach ($ads as $item)
 					
@@ -296,6 +297,7 @@
 		</div>			
 	</div>
 </div>
+@endif
 <!-- //banner-bottom -->
 <!-- Latest-tv-series -->
 	 
@@ -350,7 +352,8 @@
 			<div class="clearfix"> </div>
 		</div>
 	</div>
-</div>
+
+
 <!-- //footer -->
 <!-- Bootstrap Core JavaScript -->
 <script src="/js/bootstrap.min.js"></script>

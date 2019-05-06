@@ -154,7 +154,7 @@ class Movie_Controller extends Controller
     public function storebyurl(Request $request)
     {
         $countrylist = Countrie::all();
-        $apikey = 'AIzaSyCBdzrJpNLhWK0rHXbtre-QBLuDZ63mu5Y'; 
+        $apikey = 'AIzaSyD0fwa3x0hh-XpfkyBP-1ovd7IqtLQXk1U'; 
         $input = $request->all();
         $imdbids = explode("\n",$input["imdbids"]);
         $added =0;
@@ -166,7 +166,7 @@ class Movie_Controller extends Controller
         $check = Watchmovie::where('server1',$item)->first();
         if(empty($check))
         {
-        $url="http://www.omdbapi.com/?i=".$item."&apikey=1c2aadc3";
+        $url="http://www.omdbapi.com/?i=".$item."&apikey=fff6833a";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -186,7 +186,22 @@ class Movie_Controller extends Controller
         $country = explode(",",$result["Country"]);
         $genre = $result["Genre"];
         $user=Auth::user()->id;
-        //add the image
+        $keyword = str_replace(array('&',' '),array('','+'),$title).'+trailer';
+        $googleApiUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' . $keyword . '&maxResults=1&key=' . $apikey;
+        $ch = curl_init();  
+        curl_setopt($ch, CURLOPT_URL, $googleApiUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $result = json_decode($response,true);
+        $result = $result["items"][0];
+        $result = $result["id"];
+         $trailer = 'https://www.youtube.com/embed/'.$result["videoId"];
+         //end loop for country
+          //add the image
         @$rawImage = file_get_contents($imageurl);
         if($rawImage)
         {
@@ -215,23 +230,6 @@ class Movie_Controller extends Controller
          else{
             $movie['country_id'] = $countryid->id;
          }
-
-
-        $keyword = $item.'+trailer';
-        $googleApiUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' . $keyword . '&maxResults=1&key=' . $apikey;
-        $ch = curl_init();  
-        curl_setopt($ch, CURLOPT_URL, $googleApiUrl);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        $response = curl_exec($ch);
-        curl_close($ch);
-        $result = json_decode($response,true);
-        $result = $result["items"][0];
-        $result = $result["id"];
-         $trailer = 'https://www.youtube.com/embed/'.$result["videoId"];
-         //end loop for country
          $movie['name'] = $title;
          $movie['year'] = $year;
          $movie['rate'] = $rate;

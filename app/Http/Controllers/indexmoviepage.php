@@ -206,18 +206,18 @@ class indexmoviepage extends Controller
         return view('website.movie',compact('movie','ads')); 
     }
 //--------------------------------------------------------------------------->
-    public function watchserie($slugserie,$slugseason,$slugepisode)
+    public function watchserie($slugepisode)
     {
-        $serie=Serie::where('slug',$slugserie)->firstOrFail();
-        $season=Season::select('seasons.*')->join('series','series.id','=','seasons.serie_id')->where('series.slug',$slugserie)->get();
+        $watch=Watchepisode::where('slug',$slugepisode)->first();
+        $serie=Serie::where('slug',$watch->Serie->slug)->first();
+        $season=Season::select('seasons.*')->join('series','series.id','=','seasons.serie_id')->where('series.slug',$watch->Serie->slug)->get();
         $episodes=Watchepisode::select('watchepisodes.*')->join('series','series.id','=','watchepisodes.serie_id')
                                 ->join('seasons','seasons.id','=','watchepisodes.season_id')
-                                ->where([['series.slug','=',$slugserie],['seasons.slug','=',$slugseason]])->get();
-        $watch=Watchepisode::where('slug',$slugepisode)->firstOrFail();
+                                ->where([['series.slug','=',$watch->Serie->slug],['seasons.slug','=',$watch->Season->slug]])->get();
         $watch->increment('views');
-        $down=Downloadepisode::where('slug',$slugepisode)->firstOrFail();
+        $down=Downloadepisode::where('slug',$slugepisode)->first();
         $ads=Advertising::all();
-        MetaTag::set('title', 'RESHMOVIES4U | Watch '.$serie->slug.'-'.$slugseason.'-'.$watch->slug);
+        MetaTag::set('title', 'RESHMOVIES4U | Watch '.$watch->slug);
         MetaTag::set('image', asset('images/titlecon.png'));
         MetaTag::set('description', $serie->story);
         return view('website.serie',compact('serie','season','episodes','watch','down','ads'));

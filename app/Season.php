@@ -25,7 +25,7 @@ class Season extends Model
         ];
     }
     public function getFullnameAttribute() {
-        return 'Season' . ' ' . $this->season_number;
+        return $this->Serie->name.'-Season' . ' ' . $this->season_number; 
     }
 
 

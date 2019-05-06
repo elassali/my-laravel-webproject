@@ -1,6 +1,6 @@
-@extends('layouts.AdminMaster')
-@section('content')
-<div class="box">
+@extends("layouts.AdminMaster")
+@section('content') 
+<div class="box"> 
     <div class="col-md-12 offset-md-4">
         @if( $success = session()->get('success'))
         <div class="alert alert-info alert-dismissible" style="margin-top:10px;">
@@ -11,7 +11,7 @@
     </div>
 <div class="row" style="margin:1px">    
         
-{!! Form::open(['method'=>'POST','action'=>'Movie_Controller@storebyurl']) !!}
+{!! Form::open(['method'=>'POST','action'=>'Remot@store']) !!}
 <div class="col-lg-8">
             
     <div class="form-group">

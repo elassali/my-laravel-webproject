@@ -80,7 +80,7 @@
                                             </div>
                                             {{-- Facebook share button --}}
                                             <div class="fb-share-button" 
-                                               data-href="{{route('watchserie',['idserie'=>$watch->serie->slug ,'idseason'=>$watch->season->slug ,'idepisode'=>$watch->slug])}}" 
+                                               data-href="{{route('watchserie',['idepisode'=>$watch->slug])}}" 
                                                 data-layout="button_count" data-size="large">
                                            </div>
                                            @include('layouts.disquecomment')
@@ -98,43 +98,7 @@
                                         
                                         
                                     </div>
-                
-                                    <div role="tabpanel" class="tab-pane fade" id="profile"   aria-labelledby="profile-tab"> 
-                                        <div id="downl">
-                                            <ul class="list-group">
-                                                 @if(!is_null($down->server1))
-                                                    <div class="col-md-3">
-                                                    <li class="list-group-item list-group-item-success"><a href="{{$down->server1}}" class="btn btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true" target="_blank"><i class="fa fa-download"></i> Server One</a></li>
-                                                     </div>
-                                                  @endif  
-                                                  @if(!is_null($down->server2)) 
-                                                     <div class="col-md-3">
-                                                            <li class="list-group-item list-group-item-success"><a href="{{$down->server2}}" class="btn btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true" target="_blank"><i class="fa fa-download"></i> Server Two</a></li>
-                                                     </div>
-                                                     @endif
-                                                     @if(!is_null($down->server3))
-                                                             <div class="col-md-3"> 
-                                                                <li class="list-group-item list-group-item-success"><a href="{{$down->server3}}" class="btn btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true" target="_blank"><i class="fa fa-download"></i> Server Three</a></li>
-                                                            </div>
-                                                     @endif
-                                                     @if(!is_null($down->server4))       
-                                                             <div class="col-md-3">
-                                                                <li class="list-group-item list-group-item-success"><a href="{{$down->server4}}" class="btn btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true" target="_blank"><i class="fa fa-download"></i> Server Four</a></li>
-                                                             </div>
-                                                     @endif
-                                                     @if(!is_null($down->server5))    
-                                                         <div class="col-md-3">
-                                                            <li class="list-group-item list-group-item-success"><a href="{{$down->server5}}" class="btn btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true" target="_blank"><i class="fa fa-download"></i> Server Five</a></li>
-                                                         </div>
-                                                         @endif
-                                                         @if(!is_null($down->server6))
-                                                         <div class="col-md-3">
-                                                          <li class="list-group-item list-group-item-success"><a href="{{$down->server6}}" class="btn btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true" target="_blank"><i class="fa fa-download"></i> Server Six</a></li>
-                                                         </div>
-                                                         @endif
-                                            </ul>    
-                                        </div>
-                                    </div>
+                                   
                                     <div role="tabpanel" class="tab-pane fade" id="rating" aria-labelledby="rating-tab"> 
                                         {{-- <p>Seasons</p>  --}}
                                 @foreach ($season as $item)
@@ -174,7 +138,7 @@
                                                          
                                                       <div class="col-md-1 forep">
                                                             <div class="squar">
-                                                                <a  href="{{route('watchserie',['idserie'=>$item->serie->slug ,'idseason'=>$item->season->slug ,'idepisode'=>$item->slug])}}">
+                                                                <a  href="{{route('watchserie',['idepisode'=>$item->slug])}}">
                                                                     <h1 class="child1">{{$item->episode_number}}</h1>
                                                                     <span class="child2">Episodes</span>
                                                                 </a>

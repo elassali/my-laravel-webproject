@@ -64,7 +64,7 @@
                                       <span class="time text-danger">{{$item->created_at->diffForHumans()}}</span>
                                       </span>
                                       <span class="message text-success">
-                                      {{$item->subject}}
+                                      {{strlen($item->subject) > 15 ? substr($item->subject,0,30)."..." : $item->subject}}
                                       </span>
                                   </a>
                 </li>

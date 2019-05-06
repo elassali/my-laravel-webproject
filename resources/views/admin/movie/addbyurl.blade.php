@@ -1,5 +1,5 @@
-@extends('layouts.AdminMaster')
-@section('content')
+@extends($role)
+@section('content') 
 <div class="box">
     <div class="col-md-12 offset-md-4">
         @if( $success = session()->get('success'))

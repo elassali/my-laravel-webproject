@@ -27,7 +27,7 @@ class Watchepisode extends Model
         ];
     }
     public function getFullnameAttribute() {
-        return 'Episode' . ' ' . $this->episode_number;
+        return $this->Serie->name.'-Season'.$this->Season->season_number.'-Episode' . ' ' . $this->episode_number;
     }
 
 

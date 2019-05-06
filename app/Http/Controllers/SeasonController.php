@@ -127,7 +127,7 @@ class SeasonController extends Controller
     public function destroy($id)
     {
         Season::findOrFail($id)->delete();
-        return redirect('/season');
+        return redirect()->route('season.index');
 
     }
 }

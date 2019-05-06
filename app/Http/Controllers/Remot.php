@@ -47,8 +47,23 @@ class Remot extends Controller
      */
     public function store(Request $request)
     {
-        
-
+        // $input = $request->all();
+        // $imbds = explode("\n",$input['imdbids']);
+        // foreach($imbds as $item)
+        // {
+        //    if(strlen($item) > 7 )
+        //    {
+        //        echo $item.'<br />';
+        //    }
+        //         // if(strpos($item,'tt') !== false)
+        //         // {
+        //         //     echo $item.'<br />';
+        //         // }
+        // }
+        $title = "Oliver &amp; Company";
+        $title = str_replace(array('&amp;',' '),array('','+'),$title);
+        echo $title;
+     
     } 
 
     /**

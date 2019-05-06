@@ -14,14 +14,13 @@
               </tr>
               @foreach ($seasons as $season)
               <tr>
-              <td ><img class="img-circle" height="50" width="50" src="{{$season->serie->photo ? 'img/'.$season->serie->photo->path : 'img/avatar1.jpg' }}"  alt=""></td>
-                <td>{{$season->serie->name}}</td>
+              <td ><img class="img-circle" height="50" width="50" src="{{$season->serie->photo ? 'img/'.$season->serie->photo['path'] : 'img/avatar1.jpg' }}"  alt=""></td>
+                <td>{{$season->serie['name']}}</td>
                 <td>{{$season->season_number}}</td>
                 <td>
                     {!! Form::open(['method'=>'DELETE','action'=>['SeasonController@destroy',$season->id]])!!}
                   <div class="btn-group">
                   <a class="btn btn-primary" href="{{route('season.edit',$season->id)}}"><i class="icon_pencil-edit"></i></a>                 
-                    {{-- <a class="btn btn-danger" href="{{route('user.destroy',$user->id)}}"  ><i class="icon_close_alt2"></i></a> --}}
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="icon_close_alt2"></i></button>  
                   </div>
                   {!! Form::close() !!}
