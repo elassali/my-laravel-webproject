@@ -12,6 +12,9 @@ use App\User;
 use App\Photo;
 use App\Serie;
 use App\Category_serie; 
+use App\Watchepisode;
+use App\Downloadepisode;
+use App\Season;
 class SerieController extends Controller
 {
     /**
@@ -198,6 +201,16 @@ class SerieController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $serie = Serie::findOrFail($id);
+         if(file_exists(public_path().$serie->photo->file.$serie->photo->path))
+         {
+            unlink(public_path().$serie->photo->file.$serie->photo->path); 
+         }
+         Category_serie::where('serie_id',$id)->delete();
+         Watchepisode::where('serie_id',$id)->delete();
+         Season::where('serie_id',$id)->delete();
+         Downloadepisode::where('serie_id',$id)->delete();
+         $serie->delete();
+         return redirect()->route('serie.index'); 
     }
 }

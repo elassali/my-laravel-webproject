@@ -111,11 +111,11 @@ class SeasonController extends Controller
     {
         $input=$request->all();
         $season=Season::findOrFail($id);
-        $season['serie_id']=$input['serie_id'];
+        $season['serie_id']=$input['serie_id']; 
         $season['season_number']=$input['season_num'];
         $season['trailer']=$input['trailer'];
         $season->save();
-        return redirect('/season');
+        return redirect()->route('season.index');
     }
 
     /**

@@ -22,7 +22,7 @@ class Season extends Model
                 'source' =>'fullname',
                 'onUpdate' => true
             ]
-        ];
+        ]; 
     }
     public function getFullnameAttribute() {
         return $this->Serie->name.'-Season' . ' ' . $this->season_number; 

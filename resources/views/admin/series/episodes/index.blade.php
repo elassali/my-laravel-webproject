@@ -15,7 +15,7 @@
               </tr>
               @foreach ($watchs as $watch)
               <tr>
-              <td ><img class="img-circle" height="50" width="50" src="{{$watch->serie->photo ? 'img/'.$watch->serie->photo->path : 'img/avatar1.jpg' }}"  alt=""></td>
+              <td ><img class="img-circle" height="50" width="50" src="{{'/img/'.$watch->serie->photo['path'] ? '/img/'.$watch->serie->photo['path'] : 'img/avatar1.jpg' }}"  alt=""></td>
                 <td>{{$watch->serie->name}}</td>
                 <td>{{$watch->season->season_number}}</td>
                 <td>{{$watch->episode_number}}</td>

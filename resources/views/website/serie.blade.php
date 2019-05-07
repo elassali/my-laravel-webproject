@@ -104,12 +104,12 @@
                                 @foreach ($season as $item)
 
                                                         <div class="col-md-2 w3l-movie-gride-agile">
-                                                        <a href="{{route('season',['slugserie'=>$item->serie->slug,'slugseason'=>$item->slug])}}" class="hvr-shutter-out-horizontal"><img src="{{$item->serie->photo->file.$item->serie->photo->path}}" title="album-name" style="height: 268px; width:182px;" alt=" " />
+                                                        <a href="{{route('season',['slugseason'=>$item->slug])}}" class="hvr-shutter-out-horizontal"><img src="{{$item->serie->photo->file.$item->serie->photo->path}}" title="album-name" style="height: 268px; width:182px;" alt=" " />
                                                                     <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
                                                                 </a>
                                                                 <div class="mid-1 agileits_w3layouts_mid_1_home">
                                                                     <div class="w3l-movie-text">
-                                                                    <h3><a href="{{route('season',['slugserie'=>$item->serie->slug,'slugseason'=>$item->slug])}}">Season {{$item->season_number}}</a></h3>							
+                                                                    <h3><a href="{{route('season',['slugseason'=>$item->slug])}}">Season {{$item->season_number}}</a></h3>							
                                                                     </div>                                                         
                                                                 </div>
                                                                
@@ -128,7 +128,7 @@
                                                             <li class="list-group-item" >  <a data-season="{{$item->id}}" class="list-group-item list-group-item-action list-group-item-light" > Season <strong>{{$item->season_number}}</strong></a></li>
 
                                                                 @endforeach
-                                                                   
+                                                                    
                                                              </ul>
                                                       </div>
                                             
@@ -191,9 +191,10 @@
                                   dataType: 'json',
                                   success:function(data)
                                   {
+                                
                                     for(var i=0;i<data[0].length;i++)
                                     {
-                                      op+='<div class="col-md-1 forep"><div class="squar" style="display:none;"> <a  href="/watchserie/'+data[1][0].slug+'/'+data[2][0].slug+'/'+data[0][i].slug+'"> <h1 class="child1">'+data[0][i].episode_number+'</h1><span class="child2">Episodes</span></a></div></div>';
+                                      op+='<div class="col-md-1 forep"><div class="squar" style="display:none;"> <a  href="/watchserie/'+data[0][i].slug+'"> <h1 class="child1">'+data[0][i].episode_number+'</h1><span class="child2">Episodes</span></a></div></div>';
                                     }
                                     selection.html("");
                                     selection.append(op);

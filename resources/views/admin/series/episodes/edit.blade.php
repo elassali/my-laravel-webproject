@@ -81,7 +81,7 @@
            <div align="center">
            <button type="button" name="previous_btn_contact_details" id="previous_btn_contact_details" class="btn btn-default btn-lg">Previous</button>
            {{-- <button type="submit" name="btn_contact_details" id="btn_contact_details" class="btn btn-success btn-lg">Register</button> --}}
-          {!!Form::submit('Create',['class'=>'btn btn-success btn-lg'])!!}
+          {!!Form::submit('Update',['class'=>'btn btn-success btn-lg'])!!}
         </div>
       <br />
      </div>

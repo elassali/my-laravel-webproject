@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Movie;
 use App\Serie;
 use App\Advertising;
-use App\Watchepisode;
+use App\Watchepisode; 
 use App\Downloadepisode;
 use App\Season;
 use App\Email;
@@ -231,15 +231,14 @@ class indexmoviepage extends Controller
         echo json_encode(array($data,$serie,$season));
     }
 
-    public function seasons($slugserie,$slugseason)
+    public function seasons($slugseason)
     {
-
+        $season=Season::where('slug',$slugseason)->firstOrFail();
         $episodes=Watchepisode::select('watchepisodes.*') 
         ->join('series','series.id','=','watchepisodes.serie_id')
         ->join('seasons','seasons.id','=','watchepisodes.season_id')
-        ->where([['series.slug','=',$slugserie],['seasons.slug','=',$slugseason]])->get();
-        $season=Season::where('slug',$slugseason)->firstOrFail();
-        $serie=Serie::where('slug',$slugserie)->firstOrFail();
+        ->where([['series.slug','=',$season->serie->slug],['seasons.slug','=',$slugseason]])->get();
+        $serie=Serie::where('slug',$season->serie->slug)->firstOrFail();
         $ads=Advertising::all();
         return view('website.season',compact('episodes','season','serie','ads'));
     }

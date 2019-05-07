@@ -15,7 +15,7 @@ class Controller extends BaseController
     {
         // Defaults
         MetaTag::set('title', 'RESHMOVIES4U | Watch movies and tv-series online for free');
-        MetaTag::set('description', 'Blog Wes Anderson bicycle rights, occupy Shoreditch gentrify keffiyeh.');
+        MetaTag::set('description', 'Watch Free Online Movies and Tv-series for free');
         MetaTag::set('image', asset('images/titlecon.png'));
     }
 }

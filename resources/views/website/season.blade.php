@@ -60,7 +60,7 @@
                                                                                                              
                                                       <div class="col-md-1 forep">
                                                             <div class="squar">
-                                                                <a  href="{{route('watchserie',['idserie'=>$item->serie->slug ,'idseason'=>$item->season->slug ,'idepisode'=>$item->slug])}}">
+                                                                <a  href="{{route('watchserie',['idepisode'=>$item->slug])}}">
                                                                 <h1 class="child1">{{$item->episode_number}}</h1>
                                                                     <span class="child2">Episodes</span>
                                                                 </a>

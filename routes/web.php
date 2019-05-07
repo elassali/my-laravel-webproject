@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\Worker;
+use App\Watchepisode;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,17 @@ use App\Http\Middleware\Worker;
 |
 */
 
+Route::get('/admin/updateall',function(){
+       
+    $ep = Watchepisode::all();
+    foreach($ep as $item)
+    {
+        $item['slug'] = "edited";
+        $item->save();
+    }
+
+   }
+);
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
@@ -54,7 +66,7 @@ Route::get('/watchserie/{idepisode}',['as'=>'watchserie','uses'=>'indexmoviepage
 Route::get('/watch/{id}',['as'=>'watch','uses'=>'indexmoviepage@watch']);
 Route::get('/tv-serie',['as'=>'tv-serie','uses'=>'indexmoviepage@tvseries']);
 Route::get('/loadepisode','indexmoviepage@loadepisode');
-Route::get('/season/{serie}/{season}',['as'=>'season','uses'=>'indexmoviepage@seasons']);
+Route::get('/season/{season}',['as'=>'season','uses'=>'indexmoviepage@seasons']);
 Route::get('/contact',['as'=>'contact','uses'=>'indexmoviepage@contact']);
 Route::get('/genre/{genre}',['as'=>'genre','uses'=>'indexmoviepage@genre']);
 Route::get('/country/{country}',['as'=>'country','uses'=>'indexmoviepage@country']);

@@ -3,7 +3,7 @@
 <div class="general">
     <h4 class="latest-text w3_latest_text">Tv-Series</h4>
     <div class="container">
-        
+          
             <div id="myTabContent" class="tab-content">
                 <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
                     <div class="w3_agile_featured_movies"> 

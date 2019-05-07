@@ -12,9 +12,9 @@
                 <th><i class="icon_pin_alt"></i> Season</th>
                 <th><i class="icon_cogs"></i> Action</th>
               </tr>
-              @foreach ($seasons as $season)
+              @foreach ($seasons as $season) 
               <tr>
-              <td ><img class="img-circle" height="50" width="50" src="{{$season->serie->photo ? 'img/'.$season->serie->photo['path'] : 'img/avatar1.jpg' }}"  alt=""></td>
+              <td ><img class="img-circle" height="50" width="50" src="{{'/img/'.$season->serie->photo['path'] ? '/img/'.$season->serie->photo['path'] : 'img/avatar1.jpg' }}"  alt=""></td>
                 <td>{{$season->serie['name']}}</td>
                 <td>{{$season->season_number}}</td>
                 <td>

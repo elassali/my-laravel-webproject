@@ -56,12 +56,12 @@
                                     $counter++;
                                      @endphp           
                                  <div class="col-md-2 w3l-movie-gride-agile">
-                                                        <a href="{{route('season',['slugserie'=>$item->serie->slug,'slugseason'=>$item->slug])}}" class="hvr-shutter-out-horizontal"><img src="{{$item->serie->photo->file.$item->serie->photo->path}}" title="album-name" style="height: 268px; width:182px;" alt=" " />
+                                                        <a href="{{route('season',['slugseason'=>$item->slug])}}" class="hvr-shutter-out-horizontal"><img src="{{$item->serie->photo->file.$item->serie->photo->path}}" title="album-name" style="height: 268px; width:182px;" alt=" " />
                                                                     <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
                                                                 </a>
                                                                 <div class="mid-1 agileits_w3layouts_mid_1_home">
                                                                     <div class="w3l-movie-text">
-                                                                    <h3><a href="{{route('season',['slugserie'=>$item->serie->slug,'slugseason'=>$item->slug])}}">Season {{$item->season_number}}</a></h3>							
+                                                                    <h3><a href="{{route('season',['slugseason'=>$item->slug])}}">Season {{$item->season_number}}</a></h3>							
                                                                     </div>                                                         
                                                                 </div>
                                                                
