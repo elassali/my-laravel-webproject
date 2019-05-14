@@ -16,7 +16,7 @@ class CreateWatchmoviesTable extends Migration
         Schema::create('watchmovies', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('movie_id')->unsigned()->index();
-            $table->string('server1',2048)->nullable();   
+            $table->string('server1',2048)->nullable();
             $table->timestamps();
         });
     }

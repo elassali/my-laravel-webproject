@@ -71,7 +71,17 @@
                                     <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
                                         <div class="w3_agile_featured_movies">
                                             <?php 
-                                            $videospider_ticket = file_get_contents('https://videospider.in/getticket.php?key=Psb7KFo1qo1ZtVSk&secret_key=6te8vjvjm9t94mlp6wi9mfruvo58cl&video_id='.$watch->server1.'&s='.$watch->season->season_number.'&ip='.$_SERVER["REMOTE_ADDR"]);
+                                            function getUserIP()
+                                                            {
+                                                                if(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                                                                    return  $ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+                                                                } else {
+                                                                 return   $ip_address = $_SERVER['REMOTE_ADDR'];
+                                                                }
+                                                                
+                                                            }
+                                                            $user_ip = getUserIP(); 
+                                            $videospider_ticket = file_get_contents('https://videospider.in/getticket.php?key=Psb7KFo1qo1ZtVSk&secret_key=6te8vjvjm9t94mlp6wi9mfruvo58cl&video_id='.$watch->server1.'&s='.$watch->season->season_number.'&ip='.$user_ip);
                                             ?>
                                             <div class="col-md-12 resp-container" >
                                             <iframe class="resp-iframe videostream" 

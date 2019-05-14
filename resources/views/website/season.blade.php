@@ -57,7 +57,6 @@
                                                 
             
                                                      @foreach ($episodes as $item)
-                                                                                                             
                                                       <div class="col-md-1 forep">
                                                             <div class="squar">
                                                                 <a  href="{{route('watchserie',['idepisode'=>$item->slug])}}">

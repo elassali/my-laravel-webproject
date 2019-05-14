@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Apilogins;
 use App\Http\Requests\apiaccountrequest;
-
 class api_controller extends Controller
 {
     /**
@@ -26,7 +25,7 @@ class api_controller extends Controller
      */
     public function create()
     {
-      //
+     
     }
 
     /**
@@ -38,13 +37,13 @@ class api_controller extends Controller
     public function store(apiaccountrequest $request)
     {
         $input = $request->all();
-
         $api= new Apilogins();
         $api["apilogin"] = $input["login"];
         $api["apikey"] = $input["key"];
         $api["hostname"] = $input["host"];
         $api->save();
         return redirect()->route('apiaccount.index');
+        
 
     }
 

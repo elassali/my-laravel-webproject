@@ -13,18 +13,12 @@ use App\Watchepisode;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/testfull', function()
+{
 
-Route::get('/admin/updateall',function(){
-       
-    $ep = Watchepisode::all();
-    foreach($ep as $item)
-    {
-        $item['slug'] = "edited";
-        $item->save();
-    }
 
-   }
-);
+
+});
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
@@ -58,7 +52,7 @@ Route::resource('/advirtisement','Advirtisement');
 Route::get('/messages',['as'=>'message','uses'=>'ContactController@index']); 
 Route::get('/messages/emails',['as'=>'emails','uses'=>'ContactController@emails']);
 Route::delete('/message/delete/{id}',['as'=>'destroy','uses'=>'ContactController@destroy']); 
-Route::resource('/remote','Remot');
+Route::resource('/admin/remote','Remot');
 Route::resource('/admin/apiaccount','api_controller');
 });
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -14,6 +14,7 @@ use App\Contact;
 use App\Category;
 use DB;
 use MetaTag;
+use Helper;
 
 class indexmoviepage extends Controller
 {
@@ -195,15 +196,22 @@ class indexmoviepage extends Controller
 
     }
     public function watch($slug)
-    {
+    {      
         $movie=Movie::where('slug',$slug)->firstOrFail();
+        ///////////////////
+        $fileids = array($movie->watch->openloadfileid,$movie->watch->streamangofileid,$movie->watch->vidcloudfileid);
+        $valideurlss = Helper::videoavailable($fileids);
+        $valideurls = isset($valideurlss) && !empty($valideurlss) ? $valideurlss[array_rand($valideurlss)] : null;
+        $user_ip = Helper::getUserIP(); 
+        $videospider_ticket = file_get_contents('https://videospider.in/getticket.php?key=Psb7KFo1qo1ZtVSk&secret_key=6te8vjvjm9t94mlp6wi9mfruvo58cl&video_id='.$movie->watch->server1.'&ip='.$user_ip);
+        ////////////////////////////
         $movie->increment('views');
         $ads=Advertising::all(); 
         MetaTag::set('title', 'RESHMOVIES4U | Watch '.$movie->getFullnameAttribute());
         MetaTag::set('image', asset('images/titlecon.png'));
         MetaTag::set('description', $movie->story);
         
-        return view('website.movie',compact('movie','ads')); 
+        return view('website.movie',compact('movie','ads','valideurls','user_ip','videospider_ticket','valideurlss')); 
     }
 //--------------------------------------------------------------------------->
     public function watchserie($slugepisode)

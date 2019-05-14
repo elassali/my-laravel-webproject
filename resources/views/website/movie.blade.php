@@ -9,6 +9,7 @@
 @section('content')
 <div class="single-page-agile-main">
     <div class="container">
+            <?php var_dump($valideurlss) ?>
             <!-- /w3l-medile-movies-grids -->
                 <div class="agileits-single-top">
                     <ol class="breadcrumb">
@@ -77,13 +78,19 @@
 						<div id="myTabContent" class="tab-content">
 							<div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
 								<div class="w3_agile_featured_movies">
-                                    <?php 
-                                    $videospider_ticket = file_get_contents('https://videospider.in/getticket.php?key=Psb7KFo1qo1ZtVSk&secret_key=6te8vjvjm9t94mlp6wi9mfruvo58cl&video_id='.$movie->watch->server1.'&ip='.$_SERVER["REMOTE_ADDR"]);
-                                    ?>
 									<div class="col-sm-12 resp-container" >
-                                        <iframe class="resp-iframe" 
+                                 @if(empty($valideurls))
+                                    <iframe class="resp-iframe" 
                                     src="https://videospider.stream/getvideo?key=Psb7KFo1qo1ZtVSk&video_id={{$movie->watch->server1}}&ticket=<?php echo $videospider_ticket;?>" 
-                                        gesture="media"  allow="encrypted-media" allowfullscreen></iframe>
+                                        gesture="media"  allow="encrypted-media" allowfullscreen>
+                                    </iframe>
+                                 @else
+                                    <iframe class="resp-iframe" 
+                                              src="{{ $valideurls }}" 
+                                               gesture="media"  allow="encrypted-media" allowfullscreen>
+                                    </iframe>                                        
+                                 @endif
+
                                     </div>                       
                             </div>
                                  <!-- Your share button code -->

@@ -23,7 +23,12 @@
         {!!Form::label('quality', 'Movie Quality:', ['class' => 'input-group-text'])!!}
         {!!Form::select('quality',[''=>'Choose Quality','WEB-DL'=>'WEB-DL','HDRIP'=>'HDRIP','HDCAM'=>'HDCAM','HDTV'=>'HDTV','BluRay'=>'BluRay'],'',['class'=>'form-control'])!!}
        </div> 
-       <div class="form-group" >
+
+       <div class="form-group">
+        {!!Form::label('counet', 'api number:', ['class' => 'input-group-text'])!!}
+        {!!Form::select('counter',[''=>'Choose Quality','0'=>'1','1'=>'2','2'=>'3','3'=>'4','4'=>'5','5'=>'6'],'',['class'=>'form-control'])!!}
+       </div> 
+<div class="form-group" >
         {!!Form::submit('Create',['class' =>'form-control btn btn-primary','id' =>'start'])!!}
 </div>
 </div>

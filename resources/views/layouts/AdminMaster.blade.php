@@ -221,7 +221,7 @@
                         </a>
               <ul class="sub">
                 <li><a class="" href="{{route('remote.index')}}">openload</a></li>
-                <li><a class="" href="{{route('remote.create')}}">single video add</a></li>
+                <li><a class="" href="{{route('remote.create')}}">videos add</a></li>
               </ul>
             </li>
           

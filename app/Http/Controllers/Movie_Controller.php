@@ -153,11 +153,16 @@ class Movie_Controller extends Controller
  //store by url masse store
     public function storebyurl(Request $request)
     {
+       
         $countrylist = Countrie::all();
-        $apikey = 'AIzaSyD0fwa3x0hh-XpfkyBP-1ovd7IqtLQXk1U'; 
+        $apikey = array('AIzaSyD0fwa3x0hh-XpfkyBP-1ovd7IqtLQXk1U','AIzaSyAmnTQuGQQ-pFCapApNQNSXdR7QGRmAMhY',
+                         'AIzaSyCqOK1ieeTk_TLE3tsgQbe07x7ot9zUkCE','AIzaSyAcupoPquwXnGCW2SB886SZMUDEVB5dl_0',
+                         'AIzaSyDvgM24eS6VfrymFIzVebO_7rHz__RLrA8','AIzaSyCBdzrJpNLhWK0rHXbtre-QBLuDZ63mu5Y'); 
         $input = $request->all();
         $imdbids = explode("\n",$input["imdbids"]);
-        $added =0;
+        //////////////////////////
+        $added = 0;
+        /////////////////////////
         $alreadyexist =0;
         foreach($imdbids as $item)
         {
@@ -187,7 +192,7 @@ class Movie_Controller extends Controller
         $genre = $result["Genre"];
         $user=Auth::user()->id;
         $keyword = str_replace(array('&',' '),array('','+'),$title).'+trailer';
-        $googleApiUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' . $keyword . '&maxResults=1&key=' . $apikey;
+        $googleApiUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' . $keyword . '&maxResults=1&key=' . $apikey[$input["counter"]];
         $ch = curl_init();  
         curl_setopt($ch, CURLOPT_URL, $googleApiUrl);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -269,10 +274,12 @@ class Movie_Controller extends Controller
          $downl->save();   
          //
          $added++;
+
+        
         }
         else
         $alreadyexist++;
-        
+         
     }
     //sesion added succefly
     session()->flash('success', $added.' Movie was added successfully! '.$alreadyexist.' already exist');

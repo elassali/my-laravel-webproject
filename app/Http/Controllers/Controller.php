@@ -14,7 +14,7 @@ class Controller extends BaseController
     public function __construct()
     {
         // Defaults
-        MetaTag::set('title', 'RESHMOVIES4U | Watch movies and tv-series online for free');
+        MetaTag::set('title', 'FRESHMOVIES4U | Watch movies and tv-series online for free');
         MetaTag::set('description', 'Watch Free Online Movies and Tv-series for free');
         MetaTag::set('image', asset('images/titlecon.png'));
     }

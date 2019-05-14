@@ -6,16 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\User;
-use App\Photo;
-use App\Movie;
-use App\Category_movie;
-use App\Downloadmovie;
 use App\Watchmovie;
-use App\Http\Requests\CreateMovieRequest;
-use App\Http\Requests\EditMovieRequest;
-use App\Category;
-use App\Countrie;
-use App\Contact;
+use Helper;
+
 
 class Remot extends Controller
 {
@@ -26,8 +19,8 @@ class Remot extends Controller
      */
     public function index()
     {
-         return view('admin.oplstr.singlecreate'); 
-    }
+
+    } 
 
     /**
      * Show the form for creating a new resource.
@@ -47,23 +40,61 @@ class Remot extends Controller
      */
     public function store(Request $request)
     {
-        // $input = $request->all();
-        // $imbds = explode("\n",$input['imdbids']);
-        // foreach($imbds as $item)
-        // {
-        //    if(strlen($item) > 7 )
-        //    {
-        //        echo $item.'<br />';
-        //    }
-        //         // if(strpos($item,'tt') !== false)
-        //         // {
-        //         //     echo $item.'<br />';
-        //         // }
-        // }
-        $title = "Oliver &amp; Company";
-        $title = str_replace(array('&amp;',' '),array('','+'),$title);
-        echo $title;
-     
+        $input = $request->all();
+        $input['imdbids'] = explode("\n",$input['imdbids']);
+        $input['urls'] = explode("\n",$input['urls']);
+        $i = 0 ;
+        foreach($input['imdbids'] as $item)
+        {
+                $check = Watchmovie::where('server1',trim($item))->first();
+                if(!empty($check))
+                {
+                    if(!empty($check['openloadfileid']))
+                    {
+                        Helper::deletefile($check['openloadfileid'],'openload');
+                        Helper::deletefile($check['vidcloudfileid'],'verystream');
+                    }
+                    // Add in openload
+                    $url = 'https://api.openload.co/1/remotedl/add?login=c54cd983a54a8356&key=eUZoeKCx&url='.trim($input['urls'][$i]);
+                    $ch = curl_init($url);
+                    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+                    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    $data = curl_exec($ch);
+                    curl_close($ch);
+                    $data = json_decode($data,true);
+                    $result=$data["result"];
+                    $check['openloadfileid'] = $result["id"];
+
+                    //Add in streamango
+                    $url = 'https://api.fruithosted.net/remotedl/add?login=XecbFWa41f&key=ANDLQnMp&url='.trim($input['urls'][$i]);
+                    $ch = curl_init($url);
+                    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+                    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    $data = curl_exec($ch);
+                    curl_close($ch);
+                    $data = json_decode($data,true);
+                    $result=$data["result"];
+                    $check['streamangofileid'] = $result["id"];
+
+                    //Add in vidcloud
+                    $url = 'https://api.verystream.com/remotedl/add?login=cd9384b495e21dc324d7&key=2khMPhTbrvH&url='.trim($input['urls'][$i]);
+                    $ch = curl_init($url);
+                    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+                    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    $data = curl_exec($ch);
+                    curl_close($ch);
+                    $data = json_decode($data,true);
+                    $result=$data["result"];
+                    $check['vidcloudfileid'] = $result["id"];
+                    // SAve the change & increment the i
+                    $check->save();
+                    $i++;
+                }
+
+        }
     } 
 
     /**
@@ -98,7 +129,7 @@ class Remot extends Controller
     public function update(Request $request, $id)
     {
         //
-    }
+    } 
 
     /**
      * Remove the specified resource from storage.
